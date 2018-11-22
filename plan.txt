@@ -1,0 +1,18 @@
+//fuction where the process starts
+char	**main_function(char *pcs_left);
+
+//converting initial piece code to cordinates array
+int     **ft_convert_to_coord(char piece);
+
+//counting how much space is left - if less than 3 squares - abort
+int		ft_space_left(char **space);
+
+//checking if it is possible to place the piece
+int     ft_issafe(char **space, char **piece);
+
+//recursive solver that returns 1 if the piece was placed and 0 if not.
+int		ft_recursive_solver(char **space, int**piece, int x, int y);
+
+//fuction to allocate reset and allocate space for the new square
+int 	**ft_new_space(int min_size);
+
