@@ -6,49 +6,55 @@
 /*   By: svaskeli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 14:22:46 by svaskeli          #+#    #+#             */
-/*   Updated: 2018/11/22 16:46:43 by svaskeli         ###   ########.fr       */
+/*   Updated: 2018/11/22 18:21:49 by svaskeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fillit.h>
 
-int		**ft_convert_to_coord(char piece)
+/* read terminos into array[number_of_pieces][9]
+ * it will store xy coordinates for 4 dots (x, y, ...) and a letter in int (A(1), B(2), ...)
+ * 
+ */
+
+/*int		**ft_convert_to_coord(char piece)
 {
 	int coord[4][4];
 	int i;
 
-	/*if (piece == A to D)
+	if (piece == A to D)
 		coord -> xx, xx, xx, xx;
 	if (piece == D to K)
 		coord -> xx, xx, xx, xx;
-	...*/
+	...
 	return (coord);
-}
+}*/
 
-int		ft_issafe(char **space, int **piece, int x, int y)
+int		ft_issafe(char **space, int **pieces, int x, int y)
 {
 	return (0); //cannot place;
 	return (1); //can place;
 }
 
-int		ft_update_space(char **space, int **piece, int x, int y)
+int		ft_update_space(char **space, int **pieces, int x, int y)
 {
 	return (0); //failed to update
 	return (1); //updated
 }
 
-char	*ft_remove_piece(char *pcs_left, int **piece)
+int		*ft_remove_piece(int **pieces)
 {
-	return (pcs_left);
+	return (0);
+	return (1);
 }
 
-int		ft_backtrack(char **space, int **piece, int x, int y)
+int		ft_backtrack(char **space, int **pieces, int x, int y)
 {
 	return (0); //failed to backtrack
 	return (1); //backtracked
 }
 
-int		ft_add_piece(char *pcs_left, int **piece)
+int		ft_add_piece(int *pcs, int **pieces)
 {
 	return (0); //failed to add back
 	return (1); //added back
@@ -60,32 +66,36 @@ int		ft_space_left(char **space)
 	return (1); //if there are 4 size space left
 }
 
-int		ft_recursive_solver(char **space, char *pcs_left)
+int		ft_recursive_solver(char **space, int **pieces)
 {
 	int x;
 	int y;
+	int *pcs;
 
 	x = 0;
 	y = 0;
-	if (ft_strlen(pcs_left) == 0)
+	if(!(pcs = (int*)malloc(sizeof(int) * 9)))
+		return (-1);
+	if (ft_listlen(pieces) == 0) //has to be in libft
 		return (1);
-	while (ft_strlen(pcs_left) != 0)
+	while (ft_listlen(pcs_left) != 0) //has to be in libft
 	{
 		while (space[y] != '\0')
 		{
 			while (space[x] != '\0')
 			{
-				if (space[y][x] == 0 && ft_issafe(sapce, piece, x, y) && ft_space_left(space))
+				pcs = ft_memcpy(pieces[0], pcs, 9);
+				if (space[y][x] == 0 && ft_issafe(space, pieces, x, y) && ft_space_left(space))
 				{
-					ft_update_space(space, piece, x, y);
-					ft_remove_piece(pcs_left, piece);
-					ft_recursive_solver(space, pcs_left);
+					ft_update_space(space, pieces, x, y);
+					ft_remove_piece(pieces);
+					ft_recursive_solver(space, pieces);
 					return (1);
 				}
 				else
 				{
-					ft_backtrack(space, piece, x, y);
-					ft_add_piece(pcs_lef, piece);
+					ft_backtrack(space, pieces, x, y);
+					ft_add_piece(pcs, pieces);
 					return (0);
 				}
 				x++;
@@ -95,6 +105,7 @@ int		ft_recursive_solver(char **space, char *pcs_left)
 		}
 		y = 0;
 	}
+	free (pcs);
 	return (0);
 }
 
