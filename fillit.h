@@ -13,10 +13,12 @@
 #ifndef FILLIT_H
 # define FILLIT_H
 
+#include "libft/libft.h"
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
 
-int		ft_strcmp(const char *s1, const char *s2);
+char	*sq_split(char *str);
 int		read_i1(char *sq);
 int		read_i2(char *sq);
 int		read_s(char *sq);
