@@ -6,22 +6,23 @@
 /*   By: svaskeli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 14:22:46 by svaskeli          #+#    #+#             */
-/*   Updated: 2018/11/23 16:21:29 by svaskeli         ###   ########.fr       */
+/*   Updated: 2018/11/23 17:21:47 by svaskeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fillit.h>
 
-/* read terminos into array[number_of_pieces][7]
+/* read terminos into array[number_of_pieces][9]
  * it will store xy coordinates for 3 dots (excluding 0, 0) and a letter in int (1, 2, ...)
  * 
  */
 
 int		ft_issafe(char **space, int **pieces, int x, int y)
 {
-	if (space[y][x] == '.' && space[y + *pieces[0]][x + *pieces[1]] == '.' &&
+	if (space[y + *pieces[0]][x + *pieces[1]] == '.' &&
 		   space[y + *pieces[2]][x + *pieces[3]] == '.' &&
-		   space[y + *pieces[4]][x + *pieces[5]] == '.')
+		   space[y + *pieces[4]][x + *pieces[5]] == '.' &&
+		   space[y + *pieces[6]][x + *pieces[7]] == '.')
 		return (1);
 	else
 		return (0);
@@ -29,21 +30,21 @@ int		ft_issafe(char **space, int **pieces, int x, int y)
 
 void	ft_update_space(char **space, int **pieces, int x, int y)
 {
-	space[y][x] = *piece[6] + 'A';
-	space[y + *pieces[0]][x + *pieces[1]] = *pieces[6] + 'A';
-	space[y + *pieces[2]][x + *pieces[3]] = *pieces[6] + 'A';
-	space[y + *pieces[4]][x + *pieces[5]] = *pieces[6] + 'A';
+	space[y + *pieces[0]][x + *pieces[1]] = *pieces[8] + 'A';
+	space[y + *pieces[2]][x + *pieces[3]] = *pieces[8] + 'A';
+	space[y + *pieces[4]][x + *pieces[5]] = *pieces[8] + 'A';
+	space[y + *pieces[6]][x + *pieces[7]] = *pieces[8] + 'A';
 }
 
 void	ft_backtrack(char **space, int **pieces, int x, int y)
 {
-	space[y][x] = '.';
 	space[y + *pieces[0]][x + *pieces[1]] = '.';
 	space[y + *pieces[2]][x + *pieces[3]] = '.';
 	space[y + *pieces[4]][x + *pieces[5]] = '.';
+	space[y + *pieces[6]][x + *pieces[7]] = '.';
 }
 
-/* int		ft_space_left(char **space)
+int		ft_space_left(char **space)
 {
 	int y;
 	int x;
@@ -60,7 +61,7 @@ void	ft_backtrack(char **space, int **pieces, int x, int y)
 	}
 	return (0); //if there are no 4 size space
 	return (1); //if there are 4 size space left
-} */
+}
 
 int		ft_recursive_solver(char **space, int **pieces)
 {
@@ -70,7 +71,7 @@ int		ft_recursive_solver(char **space, int **pieces)
 	y = 0;
 	if (*pieces == NULL)
 		return (1);
-	while (space[y++] != NULL)
+	while (space[y] != NULL)
 	{
 		x = 0;
 		while (space[y][x++] != '\0')
@@ -78,14 +79,13 @@ int		ft_recursive_solver(char **space, int **pieces)
 			if (ft_issafe(space, pieces, x, y)/* && ft_space_left(space)*/)
 			{
 				ft_update_space(space, pieces, x, y);
-				return (ft_recursive_solver(space, &(++*pieces)));
-			}
-			else
-			{
-				ft_backtrack(space, &(--*pieces), x, y);
-				return (0);
+				if (ft_recursive_solver(space, *pieces + 1))
+					return (1);
+				else
+					ft_backtrack(space, pieces, x, y);
 			}
 		}
+		y++;
 	}
 	return (0);
 }
