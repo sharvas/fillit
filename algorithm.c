@@ -6,7 +6,7 @@
 /*   By: svaskeli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 14:22:46 by svaskeli          #+#    #+#             */
-/*   Updated: 2018/11/22 18:21:49 by svaskeli         ###   ########.fr       */
+/*   Updated: 2018/11/23 14:04:43 by svaskeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int		ft_issafe(char **space, int **pieces, int x, int y)
 
 int		ft_update_space(char **space, int **pieces, int x, int y)
 {
+	ft_remove_piece(pieces);
 	return (0); //failed to update
 	return (1); //updated
 }
@@ -70,73 +71,91 @@ int		ft_recursive_solver(char **space, int **pieces)
 {
 	int x;
 	int y;
-	int *pcs;
 
-	x = 0;
 	y = 0;
-	if(!(pcs = (int*)malloc(sizeof(int) * 9)))
-		return (-1);
-	if (ft_listlen(pieces) == 0) //has to be in libft
+	if (*pieces == NULL)
 		return (1);
-	while (ft_listlen(pcs_left) != 0) //has to be in libft
+	while (space[y++] != '\0')
 	{
-		while (space[y] != '\0')
+		x = 0;
+		while (space[x++] != '\0')
 		{
-			while (space[x] != '\0')
+			if (space[y][x] == 0 && ft_issafe(space, pieces, x, y) && ft_space_left(space))
 			{
-				pcs = ft_memcpy(pieces[0], pcs, 9);
-				if (space[y][x] == 0 && ft_issafe(space, pieces, x, y) && ft_space_left(space))
-				{
-					ft_update_space(space, pieces, x, y);
-					ft_remove_piece(pieces);
-					ft_recursive_solver(space, pieces);
-					return (1);
-				}
-				else
-				{
-					ft_backtrack(space, pieces, x, y);
-					ft_add_piece(pcs, pieces);
-					return (0);
-				}
-				x++;
+				ft_update_space(space, pieces, x, y);
+				return (ft_recursive_solver(space, pieces++));
 			}
-			x = 0;
-			y++;
+			else
+			{
+				ft_backtrack(space, pieces--, x, y);
+				return (0);
+			}
 		}
-		y = 0;
 	}
-	free (pcs);
 	return (0);
 }
 
-int		ft_sqrt(int num) //add to libft
+int		ft_sqrt(int num)
 {
-	return (num);
+	int i;
+
+	i = 1;
+	while (i * i < num)
+		i++;
+	return (i);
+}
+
+int		*ft_new_istr(int size)
+{
+	int *str;
+	int	x;
+
+	x = 0;
+	if(!(str = (int*)malloc(sizeof(int) * size)))
+		return (-1);
+	while (x < size - 1)
+	{
+		str[x] = 0;
+		x++;
+	}
+	str[x] = -1; //str terminating char
+	return (str);
 }
 
 int		**ft_new_space(int min_size)
 {
-	min_size = ft_sqrt(ft_strlen(pcs_left)*4);
-	**space = space[min_size][min_size];
+	int y;
+
+	y = 0;
+	if (!(**space = (int**)malloc(sizeof(int) * min_size + 1)))
+		return (-1);
+	while (y < min_size)
+	{
+		if (!(space[y] = ft_new_istr(min_size + 1)))
+			return (-1);
+		y++;
+	}
+	space[y] = NULL;
+	return (space);
 }
 
-char	**start_function(char *pcs_left)
+char	**start_function(char **pieces)
 {
-	int		min_size;
 	char	**space;
-	int		x;
-	int		y;
+	char	**tmp;
+	int		res;
+	int		min_size;
 
-	x = 0;
-	y = 0;
-
-	while (/*still unsolved*/)
+	min_size = ft_sqrt(ft_listlen(pieces) * 4);
+	space = ft_new_space(min_size);
+	while ((res = ft_recursive_solver(space, pieces)) != 1)
 	{
-		space = ft_new_space(min_size);
-		if (ft_recursive_solver(space, pcs_left, x, y) == 1)
-			return (space);
-		else
-			min_size++;
+		tmp = space;
+		if (!(space = ft_new_space(min_size++)))
+			return (NULL);
+		free (tmp);
 	}
+	if (res == 1)
+		return (space);
 	return (NULL);
 }
