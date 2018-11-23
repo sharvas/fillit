@@ -133,7 +133,6 @@ int		ft_listlen(int **pieces)
 char	**start_function(int **pieces)
 {
 	char	**space;
-	char	**tmp;
 	int		res;
 	int		min_size;
 
@@ -141,15 +140,14 @@ char	**start_function(int **pieces)
 	space = ft_new_space(min_size);
 	while ((res = ft_recursive_solver(space, pieces)) != 1)
 	{
-		tmp = space;
 		if (!(space = ft_new_space(++min_size)))
 			return (NULL);
-		while (*tmp != NULL)
+		while (*space != NULL)
 		{
-			free(*tmp);
-			*tmp++;
+			free(*space);
+			*space++;
 		}
-		free (tmp);
+		free (space);
 	}
 	if (res == 1)
 		return (space);
