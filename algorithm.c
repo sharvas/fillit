@@ -13,8 +13,7 @@
 #include <fillit.h>
 
 /* read terminos into array[number_of_pieces][9]
- * it will store xy coordinates for 3 dots (excluding 0, 0) and a letter in int (1, 2, ...)
- * 
+ * it will store xy for 3 dots and a letter in an int (1, 2, ...)
  */
 
 int		ft_issafe(char **space, int **pieces, int x, int y)
@@ -44,24 +43,24 @@ void	ft_backtrack(char **space, int **pieces, int x, int y)
 	space[y + *pieces[6]][x + *pieces[7]] = '.';
 }
 
-int		ft_space_left(char **space)
+/*int		ft_space_left(char **space)
 {
 	int y;
 	int x;
 
 	y = 0;
-	while (space[y++] != NULL)
+	while (space[y] != NULL)
 	{
 		x = 0;
-		while (space[y][x++] != -1)
+		while (space[y][x++] != '\0')
 		{
-			if (space[y][x] == 0)
-				//need a way to check if there is more than 3 spaces together
+			if (space[y][x] == '.' && (space[y][x + 1] == '.' || space[y + 1][x] == '.'))
+				return (1);
 		}
+		y++;
 	}
-	return (0); //if there are no 4 size space
-	return (1); //if there are 4 size space left
-}
+	return (0);
+}*/
 
 int		ft_recursive_solver(char **space, int **pieces)
 {
@@ -79,7 +78,7 @@ int		ft_recursive_solver(char **space, int **pieces)
 			if (ft_issafe(space, pieces, x, y)/* && ft_space_left(space)*/)
 			{
 				ft_update_space(space, pieces, x, y);
-				if (ft_recursive_solver(space, *pieces + 1))
+				if (ft_recursive_solver(space, &(*pieces + 1)))
 					return (1);
 				else
 					ft_backtrack(space, pieces, x, y);
