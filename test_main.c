@@ -24,9 +24,9 @@ int		main(void)
 	int		j = 0;
 	int		**pieces;
 
-	if (!(pieces = (int**)malloc(sizeof(int) * 9)))
+	if (!(pieces = (int**)malloc(sizeof(int*) * 8)))
 		return (-1);
-	while (i < 5)
+	while (i < 8)
 	{
 		if (!(pieces[i] = (int*)malloc(sizeof(int) * 9)))
 			return (-1);
@@ -83,7 +83,7 @@ int		main(void)
 	pieces[4][7] = 1;
 	pieces[4][8] = 0;
 	// ----
-	pieces[5][0] = 0;
+/*	pieces[5][0] = 0;
 	pieces[5][1] = 0;
 	pieces[5][2] = 0;
 	pieces[5][3] = 1;
@@ -91,7 +91,7 @@ int		main(void)
 	pieces[5][5] = 2;
 	pieces[5][6] = 0;
 	pieces[5][7] = 3;
-	pieces[5][8] = 1;
+	pieces[5][8] = 1;*/
 	// |..
 	pieces[6][0] = 0;
 	pieces[6][1] = 0;
@@ -103,17 +103,17 @@ int		main(void)
 	pieces[6][7] = 2;
 	pieces[6][8] = 2;
 	// '|
-	pieces[7][0] = 0;
-	pieces[7][1] = 0;
-	pieces[7][2] = 0;
-	pieces[7][3] = 1;
-	pieces[7][4] = 1;
-	pieces[7][5] = 1;
-	pieces[7][6] = 2;
-	pieces[7][7] = 1;
-	pieces[7][8] = 0;
+	pieces[5][0] = 0;
+	pieces[5][1] = 0;
+	pieces[5][2] = 0;
+	pieces[5][3] = 1;
+	pieces[5][4] = 1;
+	pieces[5][5] = 1;
+	pieces[5][6] = 2;
+	pieces[5][7] = 1;
+	pieces[5][8] = 0;
 	// ----
-	pieces[8][0] = 0;
+/*	pieces[8][0] = 0;
 	pieces[8][1] = 0;
 	pieces[8][2] = 0;
 	pieces[8][3] = 1;
@@ -121,9 +121,9 @@ int		main(void)
 	pieces[8][5] = 2;
 	pieces[8][6] = 0;
 	pieces[8][7] = 3;
-	pieces[8][8] = 1;
+	pieces[8][8] = 1;*/
 	// termination
-	pieces[9] = NULL;
+	pieces[7] = NULL;
 
 	space = start_function(pieces);
 	while (space[j] != NULL)
