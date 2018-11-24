@@ -6,14 +6,12 @@
 /*   By: svaskeli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 14:22:46 by svaskeli          #+#    #+#             */
-/*   Updated: 2018/11/24 17:26:23 by svaskeli         ###   ########.fr       */
+/*   Updated: 2018/11/24 17:43:35 by svaskeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //#include "fillit.h"
 #include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
 #include "libft/libft.h"
 
 /* read terminos into array[number_of_pieces][9]
@@ -25,7 +23,8 @@ int		ft_issafe(char **space, int *pieces, int x, int y)
 	if (space[y + pieces[0]][x + pieces[1]] == '.' &&
 		   space[y + pieces[2]][x + pieces[3]] == '.' &&
 		   space[y + pieces[4]][x + pieces[5]] == '.' &&
-		   space[y + pieces[6]][x + pieces[7]] == '.')
+		   space[y + pieces[6]][x + pieces[7]] == '.'/* &&
+		   ft_space_left(space)*/)
 		return (1);
 	else
 		return (0);
@@ -56,10 +55,13 @@ void	ft_backtrack(char **space, int *pieces, int x, int y)
 	while (space[y] != NULL)
 	{
 		x = 0;
-		while (space[y][x++] != '\0')
+		while (space[y][x] != '\0')
 		{
+			if (space[y][x] == '.')
+				return (1);
 			if (space[y][x] == '.' && (space[y][x + 1] == '.' || space[y + 1][x] == '.'))
 				return (1);
+			x++;
 		}
 		y++;
 	}

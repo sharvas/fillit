@@ -6,7 +6,7 @@
 /*   By: svaskeli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 11:12:29 by svaskeli          #+#    #+#             */
-/*   Updated: 2018/11/24 17:27:17 by svaskeli         ###   ########.fr       */
+/*   Updated: 2018/11/24 17:44:16 by svaskeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		main(void)
 	int		j = 0;
 	int		**pieces;
 
-	if (!(pieces = (int**)malloc(sizeof(int) * 5)))
+	if (!(pieces = (int**)malloc(sizeof(int) * 9)))
 		return (-1);
 	while (i < 5)
 	{
@@ -72,8 +72,58 @@ int		main(void)
 	pieces[3][6] = 1;
 	pieces[3][7] = 2;
 	pieces[3][8] = 3;
+	// '|
+	pieces[4][0] = 0;
+	pieces[4][1] = 0;
+	pieces[4][2] = 0;
+	pieces[4][3] = 1;
+	pieces[4][4] = 1;
+	pieces[4][5] = 1;
+	pieces[4][6] = 2;
+	pieces[4][7] = 1;
+	pieces[4][8] = 0;
+	// ----
+	pieces[5][0] = 0;
+	pieces[5][1] = 0;
+	pieces[5][2] = 0;
+	pieces[5][3] = 1;
+	pieces[5][4] = 0;
+	pieces[5][5] = 2;
+	pieces[5][6] = 0;
+	pieces[5][7] = 3;
+	pieces[5][8] = 1;
+	// |..
+	pieces[6][0] = 0;
+	pieces[6][1] = 0;
+	pieces[6][2] = 1;
+	pieces[6][3] = 0;
+	pieces[6][4] = 1;
+	pieces[6][5] = 1;
+	pieces[6][6] = 1;
+	pieces[6][7] = 2;
+	pieces[6][8] = 2;
+	// '|
+	pieces[7][0] = 0;
+	pieces[7][1] = 0;
+	pieces[7][2] = 0;
+	pieces[7][3] = 1;
+	pieces[7][4] = 1;
+	pieces[7][5] = 1;
+	pieces[7][6] = 2;
+	pieces[7][7] = 1;
+	pieces[7][8] = 0;
+	// ----
+	pieces[8][0] = 0;
+	pieces[8][1] = 0;
+	pieces[8][2] = 0;
+	pieces[8][3] = 1;
+	pieces[8][4] = 0;
+	pieces[8][5] = 2;
+	pieces[8][6] = 0;
+	pieces[8][7] = 3;
+	pieces[8][8] = 1;
 	// termination
-	pieces[4] = NULL;
+	pieces[9] = NULL;
 
 	space = start_function(pieces);
 	while (space[j] != NULL)
