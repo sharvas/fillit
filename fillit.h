@@ -18,21 +18,28 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-char	*sq_split(char *str);
-int		read_i1(char *sq);
-int		read_i2(char *sq);
-int		read_s(char *sq);
-int		read_t1(char *sq);
-int		read_t2(char *sq);
-int		read_t3(char *sq);
-int		read_t4(char *sq);
-int		read_l1(char *sq);
-int		read_l2(char *sq);
-int		read_l3(char *sq);
-int		read_l4(char *sq);
-int		read_l5(char *sq);
-int		read_l6(char *sq);
-int		read_l7(char *sq);
-int		read_l8(char *sq);
+void		ft_error(void);
+static char	*classify_tetro(char *sq);
+char		**assign_array(char *file);
+char		*read_file(char **argv);
+int			read_i1(char *sq);
+int			read_i2(char *sq);
+int			read_sq(char *sq);
+int			read_t1(char *sq);
+int			read_t2(char *sq);
+int			read_t3(char *sq);
+int			read_t4(char *sq);
+int			read_l1(char *sq);
+int			read_l2(char *sq);
+int			read_l3(char *sq);
+int			read_l4(char *sq);
+int			read_j1(char *sq);
+int			read_j2(char *sq);
+int			read_j3(char *sq);
+int			read_j4(char *sq);
+int			read_z1(char *sq);
+int			read_z2(char *sq);
+int			read_z3(char *sq);
+int			read_z4(char *sq);
 
 #endif
