@@ -13,18 +13,17 @@
 //#include "fillit.h"
 #include <stdlib.h>
 #include "libft/libft.h"
+#include <stdio.h>
 
-/* read terminos into array[number_of_pieces][9]
- * it will store xy for 3 dots and a letter in an int (1, 2, ...)
- */
+int		ft_space_left(char **space);
 
 int		ft_issafe(char **space, int *pieces, int x, int y)
 {
 	if (space[y + pieces[0]][x + pieces[1]] == '.' &&
 		   space[y + pieces[2]][x + pieces[3]] == '.' &&
 		   space[y + pieces[4]][x + pieces[5]] == '.' &&
-		   space[y + pieces[6]][x + pieces[7]] == '.'/* &&
-		   ft_space_left(space)*/)
+		   space[y + pieces[6]][x + pieces[7]] == '.' &&
+		   ft_space_left(space))
 		return (1);
 	else
 		return (0);
@@ -46,36 +45,68 @@ void	ft_backtrack(char **space, int *pieces, int x, int y)
 	space[y + pieces[6]][x + pieces[7]] = '.';
 }
 
-/*int		ft_space_left(char **space)
+int		ft_count(char **space, int y, int x)
+{
+	int count;
+
+	count = 0;
+	if (space[y][x] == '.')
+		count++;
+	if (space[y + 1][x] == '.')
+		count++;	
+	if (space[y][x + 1] == '.')
+		count++;	
+	if (space[y + 1][x + 1] == '.')
+		count++;	
+	if (space[y - 1][x] == '.')
+		count++;	
+	if (space[y][x - 1] == '.')
+		count++;	
+	if (space[y - 1][x - 1] == '.')
+		count++;	
+	if (space[y + 1][x - 1] == '.')
+		count++;	
+	if (space[y - 1][x + 1] == '.')
+		count++;
+	return (count);
+}
+
+int		ft_space_left(char **space)
 {
 	int y;
 	int x;
+	int count;
+	int len;
 
-	y = 0;
-	while (space[y] != NULL)
+	y = 1;
+	count = 0;
+	len = ft_strlen(space[y]) - 1;
+	while (y < len)
 	{
-		x = 0;
-		while (space[y][x] != '\0')
+		x = 1;
+		while (x < len)
 		{
 			if (space[y][x] == '.')
-				return (1);
-			if (space[y][x] == '.' && (space[y][x + 1] == '.' || space[y + 1][x] == '.'))
-				return (1);
+				count = ft_count(space, y, x);
+			if (count > 3)
+				return (count);
 			x++;
 		}
 		y++;
 	}
 	return (0);
-}*/
+}
 
 int		ft_in_space(int *pieces, int x, int y, int size)
 {
-	if ((y + pieces[2]) < size && (y + pieces[2]) < size &&
+	if ((y + pieces[0]) < size && (y + pieces[2]) < size &&
 		   (y + pieces[4]) < size && (y + pieces[6]) < size)
-		return (1);
-	else if ((x + pieces[1]) < size && (x + pieces[3]) < size &&
+	{
+		if ((x + pieces[1]) < size && (x + pieces[3]) < size &&
 		   (x + pieces[5]) < size && (x + pieces[7]) < size)
-		return (1);
+			return (1);
+		return (0);
+	}
 	else
 		return (0);
 }
