@@ -12,6 +12,19 @@
 
 #include "fillit.h"
 
+char	*read_j(char *sq)
+{
+	if (read_j1(sq))
+		return(".#\n.#\n##\n");
+	if (read_j2(sq))
+		return("#..\n###\n");
+	if (read_j3(sq))
+		return("##\n#.\n#.\n");
+	if (read_j4(sq))
+		return("###\n..#\n");
+	return (NULL);
+}
+
 int		read_j1(char *sq)
 {
 	if (ft_strcmp(sq, ".#..\n.#..\n##..\n....\n") == 0)

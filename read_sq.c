@@ -12,25 +12,25 @@
 
 #include "fillit.h"
 
-int		read_sq(char *sq)
+char	*read_sq(char *sq)
 {
 	if (ft_strcmp(sq, "##..\n##..\n....\n....\n") == 0)
-		return (1);
+		return ("##\n##\n");
 	if (ft_strcmp(sq, "....\n##..\n##..\n....\n") == 0)
-		return (1);
+		return ("##\n##\n");
 	if (ft_strcmp(sq, "....\n....\n##..\n##..\n") == 0)
-		return (1);
+		return ("##\n##\n");
 	if (ft_strcmp(sq, ".##.\n.##.\n....\n....\n") == 0)
-		return (1);
+		return ("##\n##\n");
 	if (ft_strcmp(sq, "....\n.##.\n.##.\n....\n") == 0)
-		return (1);
+		return ("##\n##\n");
 	if (ft_strcmp(sq, "....\n....\n.##.\n.##.\n") == 0)
-		return (1);
+		return ("##\n##\n");
 	if (ft_strcmp(sq, "..##\n..##\n....\n....\n") == 0)
-		return (1);
+		return ("##\n##\n");
 	if (ft_strcmp(sq, "....\n..##\n..##\n....\n") == 0)
-		return (1);
+		return ("##\n##\n");
 	if (ft_strcmp(sq, "....\n....\n..##\n..##\n") == 0)
-		return (1);
+		return ("##\n##\n");
 	return (0);
 }

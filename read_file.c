@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_file.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dfinnis <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/11/26 08:19:43 by dfinnis           #+#    #+#             */
+/*   Updated: 2018/11/26 08:19:45 by dfinnis          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #include "fillit.h"
 
@@ -7,11 +19,22 @@ void		ft_error(void)
 	exit(1);
 }
 
-static char	*classify_tetro(char *sq)
+char		*classify_tetro(char *sq)
 {
 	if (read_i(sq))
-		return ()
+		return (read_i(sq));
+	if (read_j(sq))
+		return (read_j(sq));
+	if (read_l(sq))
+		return (read_l(sq));
+	if (read_sq(sq))
+		return (read_sq(sq));
+	if (read_t(sq))
+		return (read_t(sq));
+	if (read_z(sq))
+		return (read_z(sq));
 	ft_error();
+	return (NULL);
 }
 
 char		**assign_array(char *file)
@@ -43,7 +66,7 @@ char		**assign_array(char *file)
 	return (tetro_array);
 }
 
-static char		*read_file(char **argv)
+char		*read_file(char **argv)
 {
 	int		fd;
 	char	*ret;
