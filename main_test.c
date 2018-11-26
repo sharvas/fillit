@@ -44,7 +44,7 @@ int		main(int argc, char **argv)
 	// 	ft_putstr("here1?\n");//
 	// 	ft_error();
 	// }//
-	printf("wtf\n");
+	printf("wtf\n");//
 	tetro_array = assign_array(file);
 	ft_putstr("here2?\n");//
 	print_array(tetro_array);//
