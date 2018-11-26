@@ -22,7 +22,7 @@
 void		ft_error(void);
 char		*classify_tetro(char *sq);
 char		**assign_array(char *file);
-char		*read_file(char **argv);
+//char		*read_file(char **argv);
 
 char		*read_i(char *sq);
 int			read_i1(char *sq);
@@ -54,6 +54,6 @@ int			read_z2(char *sq);
 int			read_z3(char *sq);
 int			read_z4(char *sq);
 
-void	print_array(char **tetro_array);//
+void		print_array(char **tetro_array);//
 
 #endif

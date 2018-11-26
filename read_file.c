@@ -66,18 +66,24 @@ char		**assign_array(char *file)
 	return (tetro_array);
 }
 
-char		*read_file(char **argv)
-{
-	int		fd;
-	char	*ret;
-	char	buf[548];
-	int		read_ret;
+// char		*read_file(char **argv)
+// {
+// 	// int		fd;
+// 	char	*ret;
+// 	char	buf[548];
+// 	int		read_ret;
 
-	if ((fd = open(argv[1], O_RDONLY)) < 0)
-		ft_error();
-	if ((read_ret = read(fd, buf, 547)) < 0)
-		ft_error();
-	ret = ft_strndup((char *)buf, read_ret);
-	close(fd);
-	return (ret);
-}
+// 	// if ((fd = open(argv[1], O_RDONLY)) == -1)
+// 	// {//
+// 	// 	ft_putstr("herea?\n");//
+// 	// 	ft_error();
+// 	// }//
+// 	// if ((read_ret = read(fd, buf, 547)) < 0)
+// 	// {//
+// 	// 	ft_putstr("hereb?\n");//
+// 	// 	ft_error();
+// 	// }//
+// 	ret = ft_strndup((char *)buf, read_ret);
+// //	close(fd);
+// 	return (ret);
+// }
