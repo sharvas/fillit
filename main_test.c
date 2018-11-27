@@ -19,7 +19,6 @@ void	print_array(char **tetro_array)//
 
 	i = 0;//
 	j = 0;//
-	printf("here?");//
 	while (tetro_array[i])//
 		printf("%s\n", tetro_array[i++]);//
 }//
