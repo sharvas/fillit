@@ -29,6 +29,8 @@ int		main(int argc, char **argv)
 	char	*file;
 	char	**tetro_array;
 	int		fd;
+	char	buf[548];
+	int		read_ret;
 
 	file = NULL;
 	fd = 0;
@@ -39,14 +41,11 @@ int		main(int argc, char **argv)
 	}
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
 		ft_error();
-	// if (!(file = read_file(&argv[1])))
-	// {//
-	// 	ft_putstr("here1?\n");//
-	// 	ft_error();
-	// }//
-	printf("wtf\n");//
+	if ((read_ret = read(fd, buf, 547)) < 0)
+		ft_error();
+	file = ft_strndup((char *)buf, read_ret);
+	close(fd);
 	tetro_array = assign_array(file);
-	ft_putstr("here2?\n");//
 	print_array(tetro_array);//
 //	algorithm(tetro_array);//
 //	free_file//
