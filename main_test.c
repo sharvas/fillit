@@ -18,8 +18,52 @@ void	print_array(char **tetro_array)
 
 	i = 0;
 	while (tetro_array[i])
-		printf("%s\n", tetro_array[i++]);
+	{
+		ft_putstr(tetro_array[i++]);
+		ft_putstr("\n");
+	}
 }
+
+int		ft_listlen_char(char **array)
+{
+	int i;
+
+	i = 0;
+	while (array[i] != NULL)
+		i++;
+	return (i);
+}
+
+// int	**ft_convert_slave(char **array, **pieces)
+// {
+// 	int x;
+// 	int y;
+// 	int j;
+// 	int k;
+
+// 	x = 0;
+// 	y = 0;
+// 	j = 0;
+// 	k = 0;
+// 	if (!(pieces[n] = (int*)malloc(sizeof(int) * 9)))
+// 		return (NULL);
+// 	while (array[n][j] != '\0')
+// 	{
+// 		if (array[n][j] == '#')
+// 		{
+// 			pieces[n][k++] = y;
+// 			pieces[n][k++] = x;
+// 		}
+// 		if (array[n][j] == '\n')
+// 		{
+// 			y++;
+// 			x = 0;
+// 		}
+// 		else
+// 			x++;
+// 		j++;
+// 	}
+// }
 
 int	**ft_convert(char **array)
 {
@@ -27,14 +71,12 @@ int	**ft_convert(char **array)
 	int i;
 	int n;
 	int x;
-	int y;
-	int j;
-	int k;
-
-	i = 0;
+ 	int y;
+ 	int j;
+ 	int k;
+	
 	n = 0;
-	while (array[i] != NULL)
-		i++;
+	i = ft_listlen_char(array);
 	if (!(pieces = (int**)malloc(sizeof(int*) * i + 1)))
 		return (NULL);
 	while (n < i)
@@ -49,9 +91,8 @@ int	**ft_convert(char **array)
 		{
 			if (array[n][j] == '#')
 			{
-				pieces[n][k] = y;
-				pieces[n][++k] = x;
-				k++;
+				pieces[n][k++] = y;
+				pieces[n][k++] = x;
 			}
 			if (array[n][j] == '\n')
 			{
@@ -63,40 +104,36 @@ int	**ft_convert(char **array)
 			j++;
 		}
 		pieces[n][k] = n;
+//		ft_convert_slave(**array, **pieces);
 		n++;
 	}
 	pieces[n] = NULL;
 	return (pieces);
 }
 
+void	ft_exit_usage(void)
+{
+	ft_putstr("usage:	./fillit source_file\n");
+	exit(1);
+}
+
 int		main(int argc, char **argv)
 {
-	char	*file;
 	char	**tetro_array;
 	int		fd;
 	char	buf[548];
 	int		read_ret;
-	char **space;
-	int **pieces;
 
-	file = NULL;
 	fd = 0;
 	if (argc != 2)
-	{
-		ft_putstr("usage:	./fillit source_file\n");
-		exit(1);
-	}
+		ft_exit_usage();
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
 		ft_error();
 	if ((read_ret = read(fd, buf, 547)) < 0)
 		ft_error();
-	file = ft_strndup((char *)buf, read_ret);
+	tetro_array = assign_array(ft_strndup((char *)buf, read_ret));
 	close(fd);
-	tetro_array = assign_array(file);
-	print_array(tetro_array);
-	pieces = ft_convert(tetro_array);
-	space = start_function(pieces);
-	print_array(space);
-//	free_file
+	print_array(start_function(ft_convert(tetro_array)));
+//	free_everthing??
 	return (0);
 }
