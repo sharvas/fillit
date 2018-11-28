@@ -2,19 +2,19 @@
 
 #include "fillit.h"
 
-void		ft_exit_usage(void)
+void	ft_exit_usage(void)
 {
 	ft_putstr("usage:	./fillit source_file\n");
 	exit(1);
 }
 
-void		ft_error(void)
+void	ft_error(void)
 {
 	ft_putstr("error\n");
 	exit(1);
 }
 
-void		print_array(char **tetro_array)
+void	print_array(char **tetro_array)
 {
 	int	i;
 

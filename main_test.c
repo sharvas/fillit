@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	char	**tetro_array;
 	int		fd;

@@ -22,7 +22,7 @@ int		ft_listlen_char(char **array)
 	return (i);
 }
 
-int	**ft_convert_slave(char **array,int **pieces,int n)
+int		**ft_convert_slave(char **array,int **pieces,int n)
 {
 	int x;
 	int y;
@@ -49,7 +49,7 @@ int	**ft_convert_slave(char **array,int **pieces,int n)
 	return (pieces);
 }
 
-int	**ft_convert(char **array)
+int		**ft_convert(char **array)
 {
 	int **pieces;
 	int i;
@@ -69,7 +69,7 @@ int	**ft_convert(char **array)
 	return (pieces);
 }
 
-char		*classify_tetro(char *sq)
+char	*classify_tetro(char *sq)
 {
 	if (read_i(sq))
 		return (read_i(sq));
@@ -87,7 +87,7 @@ char		*classify_tetro(char *sq)
 	return (NULL);
 }
 
-char		**assign_array(char *file)
+char	**assign_array(char *file)
 {
 	char	**tetro_array;
 	char	*sq;
