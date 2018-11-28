@@ -10,13 +10,63 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "fillit.h"
 
-void		ft_error(void)
+int		ft_listlen_char(char **array)
 {
-	ft_putstr("error\n");
-	exit(1);
+	int i;
+
+	i = 0;
+	while (array[i] != NULL)
+		i++;
+	return (i);
+}
+
+int	**ft_convert_slave(char **array,int **pieces,int n)
+{
+	int x;
+	int y;
+	int j;
+	int k;
+
+	x = 0;
+	y = 0;
+	j = 0;
+	k = 0;
+	while (array[n][j] != '\0')
+	{
+		if (array[n][j] == '#')
+		{
+			pieces[n][k++] = y;
+			pieces[n][k++] = x;
+		}
+		if (array[n][j] == '\n')
+			y++;
+		array[n][j] == '\n' ? x = 0 : x++;
+		j++;
+	}
+	pieces[n][k] = n;
+	return (pieces);
+}
+
+int	**ft_convert(char **array)
+{
+	int **pieces;
+	int i;
+	int n;
+	
+	n = 0;
+	i = ft_listlen_char(array);
+	if (!(pieces = (int**)malloc(sizeof(int*) * i + 1)))
+		return (NULL);
+	while (n < i)
+	{
+		if (!(pieces[n] = (int*)malloc(sizeof(int) * 9)))
+			return (NULL);
+		ft_convert_slave(array, pieces, n++);
+	}
+	pieces[n] = NULL;
+	return (pieces);
 }
 
 char		*classify_tetro(char *sq)

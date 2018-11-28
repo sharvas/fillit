@@ -19,8 +19,9 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-void		ft_exit_usage(void);
-void		ft_error(void);
+int			ft_listlen_char(char **array);
+int			**ft_convert(char **array);
+int			**ft_convert_slave(char **array,int **pieces,int n);
 char		*classify_tetro(char *sq);
 char		**assign_array(char *file);
 
@@ -54,23 +55,19 @@ int			read_z2(char *sq);
 int			read_z3(char *sq);
 int			read_z4(char *sq);
 
-void		print_array(char **tetro_array);
-
-int			**ft_convert(char **array);
-
-//int		**ft_convert_slave(char **array, **pieces);
-
-int			ft_issafe(char **space, int *pieces, int x, int y);
-void		ft_update_space(char **space, int *pieces, int x, int y);
-void		ft_backtrack(char **space, int *pieces, int x, int y);
-int			ft_in_space(int *pieces, int x, int y, int size);
-
-int			ft_listlen_int(int **pieces);
-int			ft_listlen_char(char **array);
-
 int			ft_sqrt(int num);
+int			ft_listlen_int(int **pieces);
 char		**ft_new_space(int min_size);
 int			ft_recursive_solver(char **space, int **pieces, int min_size);
 char		**start_function(int **pieces);
+
+int			ft_in_space(int *pieces, int x, int y, int size);
+int			ft_issafe(char **space, int *pieces, int x, int y);
+void		ft_update_space(char **space, int *pieces, int x, int y);
+void		ft_backtrack(char **space, int *pieces, int x, int y);
+
+void		print_array(char **tetro_array);
+void		ft_exit_usage(void);
+void		ft_error(void);
 
 #endif
