@@ -12,18 +12,14 @@
 
 #include "fillit.h"
 
-char	**start_function(int **pieces);
+void	print_array(char **tetro_array)
+{
+	int	i;
 
-void	print_array(char **tetro_array)//
-{//
-	int	i;//
-	int	j;//
-
-	i = 0;//
-	j = 0;//
-	while (tetro_array[i])//
-		printf("%s\n", tetro_array[i++]);//
-}//
+	i = 0;
+	while (tetro_array[i])
+		printf("%s\n", tetro_array[i++]);
+}
 
 int	**ft_convert(char **array)
 {

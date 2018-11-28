@@ -10,12 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "fillit.h"
-#include <stdlib.h>
-#include "libft/libft.h"
-#include <stdio.h>
+#include "fillit.h"
 
-//int		ft_space_left(char **space);
+int		ft_in_space(int *pieces, int x, int y, int size)
+{
+	if ((y + pieces[0]) < size && (y + pieces[2]) < size &&
+		   (y + pieces[4]) < size && (y + pieces[6]) < size)
+	{
+		if ((x + pieces[1]) < size && (x + pieces[3]) < size &&
+		   (x + pieces[5]) < size && (x + pieces[7]) < size)
+			return (1);
+		return (0);
+	}
+	else
+		return (0);
+}
 
 int		ft_issafe(char **space, int *pieces, int x, int y)
 {
@@ -44,6 +53,102 @@ void	ft_backtrack(char **space, int *pieces, int x, int y)
 	space[y + pieces[4]][x + pieces[5]] = '.';
 	space[y + pieces[6]][x + pieces[7]] = '.';
 }
+
+int		ft_recursive_solver(char **space, int **pieces, int min_size)
+{
+	int x;
+	int y;
+	int i;
+
+	y = 0;
+	i = 0;
+	if (pieces[i] == NULL)
+		return (1);
+	while (space[y] != NULL)
+	{
+		x = 0;
+		while (space[y][x] != '\0')
+		{
+			if (ft_in_space(pieces[i], x, y, min_size) && ft_issafe(space, pieces[i], x, y))
+			{
+				ft_update_space(space, pieces[i], x, y);
+				if (ft_recursive_solver(space, &pieces[i + 1], min_size))
+					return (1);
+				else
+					ft_backtrack(space, pieces[i], x, y);
+			}
+			x++;
+		}
+		y++;
+	}
+	return (0);
+}
+
+
+int		ft_sqrt(int num)
+{
+	int i;
+
+	i = 1;
+	while (i * i < num)
+		i++;
+	return (i);
+}
+
+int		ft_listlen(int **pieces) 
+{
+	int i;
+
+	i = 0;
+	while (pieces[i] != NULL)
+		i++;
+	return (i);
+}
+
+char	**ft_new_space(int min_size)
+{
+	int		y;
+	int		x;
+	char	**space;
+
+	y = 0;
+	if (!(space = (char**)malloc(sizeof(char*) * min_size + 1)))
+		return (NULL);
+	while (y < min_size)
+	{
+		x = 0;
+		if (!(space[y] = ft_strnew(min_size)))
+			return (NULL);
+		while (x < min_size)
+			space[y][x++] = '.';
+		y++;
+	}
+	space[y] = NULL;
+	return (space);
+}
+
+char	**start_function(int **pieces)
+{
+	char	**space;
+	int		res;
+	int		min_size;
+	int		i;
+
+	min_size = ft_sqrt(ft_listlen(pieces) * 4);
+	space = ft_new_space(min_size);
+	while ((res = ft_recursive_solver(space, pieces, min_size)) != 1)
+	{
+		i = 0;
+		while (space[i++] != NULL)
+			free(space[i]);
+		if (!(space = ft_new_space(++min_size)))
+			return (NULL);
+	}
+	return (space);
+}
+
+
+//int		ft_space_left(char **space);
 
 /*int		ft_count(char **space, int y, int x)
 {
@@ -96,109 +201,3 @@ void	ft_backtrack(char **space, int *pieces, int x, int y)
 	}
 	return (0);
 }*/
-
-int		ft_in_space(int *pieces, int x, int y, int size)
-{
-	if ((y + pieces[0]) < size && (y + pieces[2]) < size &&
-		   (y + pieces[4]) < size && (y + pieces[6]) < size)
-	{
-		if ((x + pieces[1]) < size && (x + pieces[3]) < size &&
-		   (x + pieces[5]) < size && (x + pieces[7]) < size)
-			return (1);
-		return (0);
-	}
-	else
-		return (0);
-}
-
-int		ft_recursive_solver(char **space, int **pieces, int min_size)
-{
-	int x;
-	int y;
-	int i;
-
-	y = 0;
-	i = 0;
-	if (pieces[i] == NULL)
-		return (1);
-	while (space[y] != NULL)
-	{
-		x = 0;
-		while (space[y][x] != '\0')
-		{
-			if (ft_in_space(pieces[i], x, y, min_size) && ft_issafe(space, pieces[i], x, y))
-			{
-				ft_update_space(space, pieces[i], x, y);
-				if (ft_recursive_solver(space, &pieces[i + 1], min_size))
-					return (1);
-				else
-					ft_backtrack(space, pieces[i], x, y);
-			}
-			x++;
-		}
-		y++;
-	}
-	return (0);
-}
-
-int		ft_sqrt(int num)
-{
-	int i;
-
-	i = 1;
-	while (i * i < num)
-		i++;
-	return (i);
-}
-
-char	**ft_new_space(int min_size)
-{
-	int		y;
-	int		x;
-	char	**space;
-
-	y = 0;
-	if (!(space = (char**)malloc(sizeof(char*) * min_size + 1)))
-		return (NULL);
-	while (y < min_size)
-	{
-		x = 0;
-		if (!(space[y] = ft_strnew(min_size)))
-			return (NULL);
-		while (x < min_size)
-			space[y][x++] = '.';
-		y++;
-	}
-	space[y] = NULL;
-	return (space);
-}
-
-int		ft_listlen(int **pieces) 
-{
-	int i;
-
-	i = 0;
-	while (pieces[i] != NULL)
-		i++;
-	return (i);
-}
-
-char	**start_function(int **pieces)
-{
-	char	**space;
-	int		res;
-	int		min_size;
-	int		i;
-
-	min_size = ft_sqrt(ft_listlen(pieces) * 4);
-	space = ft_new_space(min_size);
-	while ((res = ft_recursive_solver(space, pieces, min_size)) != 1)
-	{
-		i = 0;
-		while (space[i++] != NULL)
-			free(space[i]);
-		if (!(space = ft_new_space(++min_size)))
-			return (NULL);
-	}
-	return (space);
-}

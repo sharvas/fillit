@@ -53,6 +53,21 @@ int			read_z2(char *sq);
 int			read_z3(char *sq);
 int			read_z4(char *sq);
 
-void		print_array(char **tetro_array);//
+void		print_array(char **tetro_array);
+
+int			**ft_convert(char **array);
+
+int			ft_issafe(char **space, int *pieces, int x, int y);
+void		ft_update_space(char **space, int *pieces, int x, int y);
+void		ft_backtrack(char **space, int *pieces, int x, int y);
+int			ft_in_space(int *pieces, int x, int y, int size);
+int			ft_recursive_solver(char **space, int **pieces, int min_size);
+
+int			ft_sqrt(int num);
+char		**ft_new_space(int min_size);
+int			ft_listlen(int **pieces);
+char		**start_function(int **pieces);
+
+char		**start_function(int **pieces);
 
 #endif
