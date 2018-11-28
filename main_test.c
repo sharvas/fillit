@@ -33,8 +33,10 @@ int	**ft_convert(char **array)
 	int x;
 	int y;
 	int j;
+	int k;
 
 	i = 0;
+	n = 0;
 	while (array[i] != NULL)
 		i++;
 	if (!(pieces = (int**)malloc(sizeof(int*) * i + 1)))
@@ -44,7 +46,6 @@ int	**ft_convert(char **array)
 		y = 0;
 		x = 0;
 		k = 0;
-		n = 0;
 		j = 0;
 		if (!(pieces[n] = (int*)malloc(sizeof(int) * 9)))
 			return (NULL);
@@ -57,11 +58,15 @@ int	**ft_convert(char **array)
 				k++;
 			}
 			if (array[n][j] == '\n')
+			{
 				y++;
+				x = 0;
+			}
+			else
+				x++;
 			j++;
-			x++;
 		}
-		pieces[n][k] = i;
+		pieces[n][k] = n;
 		n++;
 	}
 	pieces[n] = NULL;
@@ -94,8 +99,8 @@ int		main(int argc, char **argv)
 	tetro_array = assign_array(file);
 	print_array(tetro_array);
 	pieces = ft_convert(tetro_array);
-	space = start_function(tetro_array);
-	printf_array(space);
+	space = start_function(pieces);
+	print_array(space);
 //	free_file
 	return (0);
 }
