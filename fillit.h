@@ -68,6 +68,6 @@ void	ft_backtrack(char **space, int *pieces, int x, int y);
 
 void	ft_exit_usage(void);
 void	ft_error(void);
-void	ft_print_array(char **tetro_array);
+void	ft_print_array(char **array);
 
 #endif
