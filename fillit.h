@@ -20,8 +20,8 @@
 #include <fcntl.h>
 
 int		ft_listlen_char(char **array);
-int		**ft_convert(char **array);
 int		**ft_convert_slave(char **array,int **pieces,int n);
+int		**ft_convert(char **array);
 char	*classify_tetro(char *sq);
 char	**assign_array(char *file);
 
@@ -66,8 +66,8 @@ int		ft_issafe(char **space, int *pieces, int x, int y);
 void	ft_update_space(char **space, int *pieces, int x, int y);
 void	ft_backtrack(char **space, int *pieces, int x, int y);
 
-void	print_array(char **tetro_array);
 void	ft_exit_usage(void);
 void	ft_error(void);
+void	print_array(char **tetro_array);
 
 #endif
