@@ -65,8 +65,19 @@ int		**ft_convert(char **array)
 		ft_convert_slave(array, pieces, n++);
 	}
 	pieces[n] = NULL;
+//	ft_free_array(array);//
 	return (pieces);
 }
+
+// void	ft_free_array(char **array) !not prototyped!//
+// {
+// 	int i;
+
+// 	i = -1;
+// 	while (array[++i] != NULL)
+// 		free(array[i]);
+// 	free(array);
+// }
 
 char	*ft_classify_tetro(char *sq)
 {
