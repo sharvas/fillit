@@ -12,20 +12,20 @@
 
 #include "fillit.h"
 
-char	*read_z(char *sq)
+char	*ft_read_z(char *sq)
 {
-	if (read_z1(sq))
+	if (ft_read_z1(sq))
 		return("##.\n.##\n");
-	if (read_z2(sq))
+	if (ft_read_z2(sq))
 		return(".#\n##\n#.\n");
-	if (read_z3(sq))
+	if (ft_read_z3(sq))
 		return(".##\n##.\n");
-	if (read_z4(sq))
+	if (ft_read_z4(sq))
 		return("#.\n##\n.#\n");
 	return (NULL);
 }
 
-int		read_z1(char *sq)
+int		ft_read_z1(char *sq)
 {
 	if (ft_strcmp(sq, "##..\n.##.\n....\n....\n") == 0)
 		return (1);
@@ -42,7 +42,7 @@ int		read_z1(char *sq)
 	return (0);
 }
 
-int		read_z2(char *sq)
+int		ft_read_z2(char *sq)
 {
 	if (ft_strcmp(sq, ".#..\n##..\n#...\n....\n") == 0)
 		return (1);
@@ -59,7 +59,7 @@ int		read_z2(char *sq)
 	return (0);
 }
 
-int		read_z3(char *sq)
+int		ft_read_z3(char *sq)
 {
 	if (ft_strcmp(sq, ".##.\n##..\n....\n....\n") == 0)
 		return (1);
@@ -76,7 +76,7 @@ int		read_z3(char *sq)
 	return (0);
 }
 
-int		read_z4(char *sq)
+int		ft_read_z4(char *sq)
 {
 	if (ft_strcmp(sq, "#...\n##..\n.#..\n....\n") == 0)
 		return (1);

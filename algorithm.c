@@ -83,7 +83,7 @@ int		ft_recursive_solver(char **space, int **pieces, int min_size)
 	return (0);
 }
 
-char	**start_function(int **pieces)
+char	**ft_start_function(int **pieces)
 {
 	char	**space;
 	int		res;

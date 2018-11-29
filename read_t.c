@@ -12,20 +12,20 @@
 
 #include "fillit.h"
 
-char	*read_t(char *sq)
+char	*ft_read_t(char *sq)
 {
-	if (read_t1(sq))
+	if (ft_read_t1(sq))
 		return("###\n.#.\n");
-	if (read_t2(sq))
+	if (ft_read_t2(sq))
 		return(".#\n##\n.#\n");
-	if (read_t3(sq))
+	if (ft_read_t3(sq))
 		return(".#.\n###\n");
-	if (read_t4(sq))
+	if (ft_read_t4(sq))
 		return("#.\n##\n#.\n");
 	return (NULL);
 }
 
-int		read_t1(char *sq)
+int		ft_read_t1(char *sq)
 {
 	if (ft_strcmp(sq, "###.\n.#..\n....\n....\n") == 0)
 		return (1);
@@ -42,7 +42,7 @@ int		read_t1(char *sq)
 	return (0);
 }
 
-int		read_t2(char *sq)
+int		ft_read_t2(char *sq)
 {
 	if (ft_strcmp(sq, ".#..\n##..\n.#..\n....\n") == 0)
 		return (1);
@@ -59,7 +59,7 @@ int		read_t2(char *sq)
 	return (0);
 }
 
-int		read_t3(char *sq)
+int		ft_read_t3(char *sq)
 {
 	if (ft_strcmp(sq, ".#..\n###.\n....\n....\n") == 0)
 		return (1);
@@ -76,7 +76,7 @@ int		read_t3(char *sq)
 	return (0);
 }
 
-int		read_t4(char *sq)
+int		ft_read_t4(char *sq)
 {
 	if (ft_strcmp(sq, "#...\n##..\n#...\n....\n") == 0)
 		return (1);

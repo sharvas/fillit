@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-char	*read_sq(char *sq)
+char	*ft_read_sq(char *sq)
 {
 	if (ft_strcmp(sq, "##..\n##..\n....\n....\n") == 0)
 		return ("##\n##\n");

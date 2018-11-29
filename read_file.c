@@ -69,25 +69,25 @@ int		**ft_convert(char **array)
 	return (pieces);
 }
 
-char	*classify_tetro(char *sq)
+char	*ft_classify_tetro(char *sq)
 {
-	if (read_i(sq))
-		return (read_i(sq));
-	if (read_j(sq))
-		return (read_j(sq));
-	if (read_l(sq))
-		return (read_l(sq));
-	if (read_sq(sq))
-		return (read_sq(sq));
-	if (read_t(sq))
-		return (read_t(sq));
-	if (read_z(sq))
-		return (read_z(sq));
+	if (ft_read_i(sq))
+		return (ft_read_i(sq));
+	if (ft_read_j(sq))
+		return (ft_read_j(sq));
+	if (ft_read_l(sq))
+		return (ft_read_l(sq));
+	if (ft_read_sq(sq))
+		return (ft_read_sq(sq));
+	if (ft_read_t(sq))
+		return (ft_read_t(sq));
+	if (ft_read_z(sq))
+		return (ft_read_z(sq));
 	ft_error();
 	return (NULL);
 }
 
-char	**assign_array(char *file)
+char	**ft_assign_array(char *file)
 {
 	char	**tetro_array;
 	char	*sq;
@@ -108,7 +108,7 @@ char	**assign_array(char *file)
 			file += 21;
 		if ((end && file[20] != '\0'))
 			ft_error();
-		tetro_array[i++] = ft_strdup(classify_tetro(sq));
+		tetro_array[i++] = ft_strdup(ft_classify_tetro(sq));
 		if (sq)
 			free(sq);
 	}

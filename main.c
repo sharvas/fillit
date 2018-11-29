@@ -26,9 +26,9 @@ int	main(int argc, char **argv)
 		ft_error();
 	if ((read_ret = read(fd, buf, 547)) < 0)
 		ft_error();
-	tetro_array = assign_array(ft_strndup((char *)buf, read_ret));
+	tetro_array = ft_assign_array(ft_strndup((char *)buf, read_ret));
 	close(fd);
-	print_array(start_function(ft_convert(tetro_array)));
+	ft_print_array(ft_start_function(ft_convert(tetro_array)));
 //	free_everthing??
 	return (0);
 }

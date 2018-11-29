@@ -14,7 +14,7 @@ void	ft_error(void)
 	exit(1);
 }
 
-void	print_array(char **tetro_array)
+void	ft_print_array(char **tetro_array)
 {
 	int	i;
 
