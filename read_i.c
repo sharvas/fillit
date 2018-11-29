@@ -12,15 +12,6 @@
 
 #include "fillit.h"
 
-char	*ft_read_i(char *sq)
-{
-	if (ft_read_i1(sq))
-		return("#\n#\n#\n#\n");
-	if (ft_read_i2(sq))
-		return("####\n");
-	return (NULL);
-}
-
 int		ft_read_i1(char *sq)
 {
 	if (ft_strcmp(sq, "#...\n#...\n#...\n#...\n") == 0)
@@ -45,4 +36,13 @@ int		ft_read_i2(char *sq)
 	if (ft_strcmp(sq, "....\n....\n....\n####\n") == 0)
 		return (1);
 	return (0);
+}
+
+char	*ft_read_i(char *sq)
+{
+	if (ft_read_i1(sq))
+		return("#\n#\n#\n#\n");
+	if (ft_read_i2(sq))
+		return("####\n");
+	return (NULL);
 }
