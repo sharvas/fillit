@@ -42,8 +42,7 @@ int		**ft_convert_slave(char **array,int **pieces,int n)
 		}
 		if (array[n][j] == '\n')
 			y++;
-		array[n][j] == '\n' ? x = 0 : x++;
-		j++;
+		array[n][j++] == '\n' ? x = 0 : x++;
 	}
 	pieces[n][k] = n;
 	return (pieces);
@@ -52,8 +51,8 @@ int		**ft_convert_slave(char **array,int **pieces,int n)
 int		**ft_convert(char **array)
 {
 	int **pieces;
-	int i;
 	int n;
+	int i;
 	
 	n = 0;
 	i = ft_listlen_char(array);
