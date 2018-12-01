@@ -55,6 +55,7 @@ int		**ft_convert(char **array)
 		ft_convert_slave(array, pieces, n++);
 	}
 	pieces[n] = NULL;
+	ft_2d_char_free(array);
 	return (pieces);
 }
 

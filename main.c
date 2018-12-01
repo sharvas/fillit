@@ -15,6 +15,7 @@
 int	main(int argc, char **argv)
 {
 	char	**tetro_array;
+	int		**pieces;
 	int		fd;
 	char	buf[548];
 	int		read_ret;
@@ -28,6 +29,8 @@ int	main(int argc, char **argv)
 		ft_error();
 	tetro_array = ft_assign_array(ft_strndup((char *)buf, read_ret));
 	close(fd);
-	ft_print_array(ft_start_function(ft_convert(tetro_array)));
+	pieces = ft_convert(tetro_array);
+	ft_print_array(ft_start_function(pieces));
+	ft_2d_int_free(pieces);
 	return (0);
 }
