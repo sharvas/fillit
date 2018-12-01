@@ -6,7 +6,7 @@
 /*   By: svaskeli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 14:22:46 by svaskeli          #+#    #+#             */
-/*   Updated: 2018/11/24 17:43:35 by svaskeli         ###   ########.fr       */
+/*   Updated: 2018/12/01 17:47:57 by svaskeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ char	**ft_new_space(int min_size)
 
 	y = 0;
 	if (!(space = (char**)malloc(sizeof(char*) * min_size + 1)))
-		return (NULL);
+		ft_error();
 	while (y < min_size)
 	{
 		x = 0;
 		if (!(space[y] = ft_strnew(min_size)))
-			return (NULL);
+			ft_error();
 		while (x < min_size)
 			space[y][x++] = '.';
 		y++;
@@ -77,8 +77,9 @@ char	**ft_start_function(int **pieces)
 		i = 0;
 		while (space[i++] != NULL)
 			free(space[i]);
+		free(space);
 		if (!(space = ft_new_space(++min_size)))
-			return (NULL);
+			ft_error();
 	}
 	return (space);
 }

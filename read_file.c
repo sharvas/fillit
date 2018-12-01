@@ -6,7 +6,7 @@
 /*   By: dfinnis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 08:19:43 by dfinnis           #+#    #+#             */
-/*   Updated: 2018/11/26 08:19:45 by dfinnis          ###   ########.fr       */
+/*   Updated: 2018/12/01 17:50:21 by svaskeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ int		**ft_convert(char **array)
 	n = 0;
 	i = ft_listlen_char(array);
 	if (!(pieces = (int**)malloc(sizeof(int*) * i + 1)))
-		return (NULL);
+		ft_error();
 	while (n < i)
 	{
 		if (!(pieces[n] = (int*)malloc(sizeof(int) * 9)))
-			return (NULL);
+			ft_error();
 		ft_convert_slave(array, pieces, n++);
 	}
 	pieces[n] = NULL;
