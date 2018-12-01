@@ -18,7 +18,6 @@
 # include <stdio.h>
 # include <fcntl.h>
 
-int		ft_listlen_char(char **array);
 int		**ft_convert_slave(char **array, int **pieces, int n);
 int		**ft_convert(char **array);
 char	*ft_classify_tetro(char *sq);
@@ -54,8 +53,6 @@ int		ft_read_z3(char *sq);
 int		ft_read_z4(char *sq);
 char	*ft_read_z(char *sq);
 
-int		ft_sqrt(int num);
-int		ft_listlen_int(int **pieces);
 char	**ft_new_space(int min_size);
 int		ft_recursive_solver(char **space, int **pieces, int min_size);
 char	**ft_start_function(int **pieces);

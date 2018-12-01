@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fillit.a
+NAME = fillit
 
 SRCS = algorithm.c \
 		algorithm_rhythm.c \
@@ -26,24 +26,32 @@ SRCS = algorithm.c \
 
 OBJ = $(SRCS:.c=.o)
 
-INC = fillit.h
-
 FLAGS = -Wall -Werror -Wextra
+
+HEADER = -I libft/
+
+LIB = -L libft/ -lft
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	@ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
+$(NAME): lib
+	gcc $(FLAGS) $(HEADER) -c $(SRCS) -g
+	gcc $(OBJ) $(HEADER) $(LIB) -g -o $(NAME)
 
-$(OBJ): $(SRCS)
-	@gcc -c $(FLAGS) $(SRCS) -I $(INC)
+lib:
+	@make -C libft/ all
 
-clean:
-	@rm -rf $(OBJ)
+libfclean:
+	@make -C libft/ fclean
 
-fclean: clean
-	@rm -rf $(NAME)
+libclean:
+	@make -C libft/ clean
+
+clean: libclean
+	@/bin/rm -f $(OBJ)
+
+fclean: clean libfclean
+	@/bin/rm -f $(NAME)
 
 re: fclean all
 

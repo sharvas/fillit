@@ -12,16 +12,6 @@
 
 #include "fillit.h"
 
-int		ft_listlen_char(char **array)
-{
-	int i;
-
-	i = 0;
-	while (array[i] != NULL)
-		i++;
-	return (i);
-}
-
 int		**ft_convert_slave(char **array, int **pieces, int n)
 {
 	int x;

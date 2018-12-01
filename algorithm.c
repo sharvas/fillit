@@ -12,26 +12,6 @@
 
 #include "fillit.h"
 
-int		ft_sqrt(int num)
-{
-	int i;
-
-	i = 1;
-	while (i * i < num)
-		i++;
-	return (i);
-}
-
-int		ft_listlen_int(int **pieces)
-{
-	int i;
-
-	i = 0;
-	while (pieces[i] != NULL)
-		i++;
-	return (i);
-}
-
 char	**ft_new_space(int min_size)
 {
 	int		y;
