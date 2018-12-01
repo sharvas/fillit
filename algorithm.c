@@ -22,7 +22,7 @@ int		ft_sqrt(int num)
 	return (i);
 }
 
-int		ft_listlen_int(int **pieces) 
+int		ft_listlen_int(int **pieces)
 {
 	int i;
 
@@ -60,16 +60,17 @@ int		ft_recursive_solver(char **space, int **pieces, int min_size)
 	int y;
 	int i;
 
-	y = 0;
+	y = -1;
 	i = 0;
 	if (pieces[i] == NULL)
 		return (1);
-	while (space[y] != NULL)
+	while (space[++y] != NULL)
 	{
 		x = -1;
 		while (space[y][++x] != '\0')
 		{
-			if (ft_in_space(pieces[i], x, y, min_size) && ft_issafe(space, pieces[i], x, y))
+			if (ft_in_space(pieces[i], x, y, min_size) &&
+				ft_issafe(space, pieces[i], x, y))
 			{
 				ft_update_space(space, pieces[i], x, y);
 				if (ft_recursive_solver(space, &pieces[i + 1], min_size))
@@ -78,7 +79,6 @@ int		ft_recursive_solver(char **space, int **pieces, int min_size)
 					ft_backtrack(space, pieces[i], x, y);
 			}
 		}
-		y++;
 	}
 	return (0);
 }

@@ -1,14 +1,24 @@
-//header//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algorithm_rhythm.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dfinnis <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/01 13:04:47 by dfinnis           #+#    #+#             */
+/*   Updated: 2018/12/01 13:04:50 by dfinnis          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fillit.h"
 
 int		ft_in_space(int *pieces, int x, int y, int size)
 {
 	if ((y + pieces[0]) < size && (y + pieces[2]) < size &&
-		   (y + pieces[4]) < size && (y + pieces[6]) < size)
+		(y + pieces[4]) < size && (y + pieces[6]) < size)
 	{
 		if ((x + pieces[1]) < size && (x + pieces[3]) < size &&
-		   (x + pieces[5]) < size && (x + pieces[7]) < size)
+			(x + pieces[5]) < size && (x + pieces[7]) < size)
 			return (1);
 		return (0);
 	}
@@ -19,9 +29,9 @@ int		ft_in_space(int *pieces, int x, int y, int size)
 int		ft_issafe(char **space, int *pieces, int x, int y)
 {
 	if (space[y + pieces[0]][x + pieces[1]] == '.' &&
-		   space[y + pieces[2]][x + pieces[3]] == '.' &&
-		   space[y + pieces[4]][x + pieces[5]] == '.' &&
-		   space[y + pieces[6]][x + pieces[7]] == '.')
+		space[y + pieces[2]][x + pieces[3]] == '.' &&
+		space[y + pieces[4]][x + pieces[5]] == '.' &&
+		space[y + pieces[6]][x + pieces[7]] == '.')
 		return (1);
 	else
 		return (0);

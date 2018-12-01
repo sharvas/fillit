@@ -41,8 +41,8 @@ int		ft_read_i2(char *sq)
 char	*ft_read_i(char *sq)
 {
 	if (ft_read_i1(sq))
-		return("#\n#\n#\n#\n");
+		return ("#\n#\n#\n#\n");
 	if (ft_read_i2(sq))
-		return("####\n");
+		return ("####\n");
 	return (NULL);
 }

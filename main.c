@@ -29,6 +29,5 @@ int	main(int argc, char **argv)
 	tetro_array = ft_assign_array(ft_strndup((char *)buf, read_ret));
 	close(fd);
 	ft_print_array(ft_start_function(ft_convert(tetro_array)));
-//	free_everthing??
 	return (0);
 }

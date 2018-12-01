@@ -22,7 +22,7 @@ int		ft_listlen_char(char **array)
 	return (i);
 }
 
-int		**ft_convert_slave(char **array,int **pieces,int n)
+int		**ft_convert_slave(char **array, int **pieces, int n)
 {
 	int x;
 	int y;
@@ -53,7 +53,7 @@ int		**ft_convert(char **array)
 	int **pieces;
 	int n;
 	int i;
-	
+
 	n = 0;
 	i = ft_listlen_char(array);
 	if (!(pieces = (int**)malloc(sizeof(int*) * i + 1)))
@@ -65,19 +65,8 @@ int		**ft_convert(char **array)
 		ft_convert_slave(array, pieces, n++);
 	}
 	pieces[n] = NULL;
-//	ft_free_array(array);//
 	return (pieces);
 }
-
-// void	ft_free_array(char **array) !not prototyped!//
-// {
-// 	int i;
-
-// 	i = -1;
-// 	while (array[++i] != NULL)
-// 		free(array[i]);
-// 	free(array);
-// }
 
 char	*ft_classify_tetro(char *sq)
 {

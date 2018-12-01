@@ -12,15 +12,14 @@
 
 #ifndef FILLIT_H
 # define FILLIT_H
-
-#include "libft/libft.h"
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <fcntl.h>
+# include "libft/libft.h"
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <fcntl.h>
 
 int		ft_listlen_char(char **array);
-int		**ft_convert_slave(char **array,int **pieces,int n);
+int		**ft_convert_slave(char **array, int **pieces, int n);
 int		**ft_convert(char **array);
 char	*ft_classify_tetro(char *sq);
 char	**ft_assign_array(char *file);

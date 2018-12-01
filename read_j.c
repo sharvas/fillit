@@ -83,12 +83,12 @@ int		ft_read_j4(char *sq)
 char	*ft_read_j(char *sq)
 {
 	if (ft_read_j1(sq))
-		return(".#\n.#\n##\n");
+		return (".#\n.#\n##\n");
 	if (ft_read_j2(sq))
-		return("#..\n###\n");
+		return ("#..\n###\n");
 	if (ft_read_j3(sq))
-		return("##\n#.\n#.\n");
+		return ("##\n#.\n#.\n");
 	if (ft_read_j4(sq))
-		return("###\n..#\n");
+		return ("###\n..#\n");
 	return (NULL);
 }
