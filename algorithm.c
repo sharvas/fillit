@@ -6,7 +6,7 @@
 /*   By: svaskeli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 14:22:46 by svaskeli          #+#    #+#             */
-/*   Updated: 2018/12/01 17:47:57 by svaskeli         ###   ########.fr       */
+/*   Updated: 2018/12/01 19:44:45 by svaskeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ char	**ft_start_function(int **pieces)
 	space = ft_new_space(min_size);
 	while ((res = ft_recursive_solver(space, pieces, min_size)) != 1)
 	{
-		i = 0;
-		while (space[i++] != NULL)
+		i = -1;
+		while (space[++i] != NULL)
 			free(space[i]);
 		free(space);
 		if (!(space = ft_new_space(++min_size)))
