@@ -18,6 +18,8 @@
 # include <stdio.h>
 # include <fcntl.h>
 
+//need a structure to define int and char arrays, that will later be freed
+
 int		**ft_convert_slave(char **array, int **pieces, int n);
 int		**ft_convert(char **array);
 char	*ft_classify_tetro(char *sq);

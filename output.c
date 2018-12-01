@@ -18,7 +18,7 @@ void	ft_exit_usage(void)
 	exit(1);
 }
 
-void	ft_error(void)
+void	ft_error(void) //error function needs to free both int and char array if they are malloced
 {
 	ft_putstr("error\n");
 	exit(1);

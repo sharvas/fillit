@@ -88,7 +88,7 @@ char	**ft_assign_array(char *file)
 	end = 0;
 	if (!file || !(tetro_array = (char **)malloc(sizeof(char *) * 27)))
 		ft_error();
-	while (!end && i < 27)
+	while (!end && i < 27) //do we need to return error if we have more than 26 pcs?
 	{
 		if (!(sq = ft_strndup(file, 20)))
 			ft_error();
