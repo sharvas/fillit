@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 		ft_exit_usage();
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
 		ft_error(array);
-	if ((ret = read(fd, buf, 547)) < 0)
+	if ((ret = read(fd, buf, 547)) <= 0)
 		ft_error(array);
 	tmp = ft_strndup((char *)buf, ret);
 	array.tetro_array = ft_assign_array(tmp, array);
