@@ -6,32 +6,31 @@
 /*   By: svaskeli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 14:22:46 by svaskeli          #+#    #+#             */
-/*   Updated: 2018/12/01 19:44:45 by svaskeli         ###   ########.fr       */
+/*   Updated: 2018/12/02 11:47:49 by svaskeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	**ft_new_space(int min_size)
+char	**ft_new_space(int min_size, t_lista array)
 {
 	int		y;
 	int		x;
-	char	**space;
 
 	y = 0;
-	if (!(space = (char**)malloc(sizeof(char*) * min_size + 1)))
-		ft_error();
+	if (!(array.space = (char**)malloc(sizeof(char*) * min_size + 1)))
+		ft_error(array);
 	while (y < min_size)
 	{
 		x = 0;
-		if (!(space[y] = ft_strnew(min_size)))
-			ft_error();
+		if (!(array.space[y] = ft_strnew(min_size)))
+			ft_error(array);
 		while (x < min_size)
-			space[y][x++] = '.';
+			array.space[y][x++] = '.';
 		y++;
 	}
-	space[y] = NULL;
-	return (space);
+	array.space[y] = NULL;
+	return (array.space);
 }
 
 int		ft_recursive_solver(char **space, int **pieces, int min_size)
@@ -63,23 +62,21 @@ int		ft_recursive_solver(char **space, int **pieces, int min_size)
 	return (0);
 }
 
-char	**ft_start_function(int **pieces)
+char	**ft_start_function(t_lista array)
 {
-	char	**space;
 	int		res;
 	int		min_size;
 	int		i;
 
-	min_size = ft_sqrt(ft_listlen_int(pieces) * 4);
-	space = ft_new_space(min_size);
-	while ((res = ft_recursive_solver(space, pieces, min_size)) != 1)
+	min_size = ft_sqrt(ft_listlen_int(array.pieces) * 4);
+	array.space = ft_new_space(min_size, array);
+	while ((res = ft_recursive_solver(array.space, array.pieces, min_size)) != 1)
 	{
 		i = -1;
-		while (space[++i] != NULL)
-			free(space[i]);
-		free(space);
-		if (!(space = ft_new_space(++min_size)))
-			ft_error();
+		while (array.space[++i] != NULL)
+			free(array.space[i]);
+		free(array.space);
+		array.space = ft_new_space(++min_size, array);
 	}
-	return (space);
+	return (array.space);
 }

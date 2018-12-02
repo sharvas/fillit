@@ -6,7 +6,7 @@
 /*   By: dfinnis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 12:33:05 by dfinnis           #+#    #+#             */
-/*   Updated: 2018/12/01 12:33:16 by dfinnis          ###   ########.fr       */
+/*   Updated: 2018/12/02 12:01:52 by svaskeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,17 @@ void	ft_exit_usage(void)
 	exit(1);
 }
 
-void	ft_error(void) //error function needs to free both int and char array if they are malloced
+void	ft_error(t_lista array)
 {
 	ft_putstr("error\n");
+	if (array.pieces)
+		ft_2d_int_free(array.pieces);
+	if (array.tetro_array)
+		ft_2d_char_free(array.tetro_array);
+	if (array.space)
+		ft_2d_char_free(array.space);
+	if (array.sq)
+		free(array.sq);
 	exit(1);
 }
 

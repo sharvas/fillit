@@ -6,13 +6,13 @@
 /*   By: dfinnis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 08:19:43 by dfinnis           #+#    #+#             */
-/*   Updated: 2018/12/01 19:50:31 by svaskeli         ###   ########.fr       */
+/*   Updated: 2018/12/02 11:48:25 by svaskeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		**ft_convert_slave(char **array, int **pieces, int n)
+int		**ft_convert_slave(t_lista array, int n)
 {
 	int x;
 	int y;
@@ -23,85 +23,82 @@ int		**ft_convert_slave(char **array, int **pieces, int n)
 	y = 0;
 	j = 0;
 	k = 0;
-	while (array[n][j] != '\0')
+	while (array.tetro_array[n][j] != '\0')
 	{
-		if (array[n][j] == '#')
+		if (array.tetro_array[n][j] == '#')
 		{
-			pieces[n][k++] = y;
-			pieces[n][k++] = x;
+			array.pieces[n][k++] = y;
+			array.pieces[n][k++] = x;
 		}
-		if (array[n][j] == '\n')
+		if (array.tetro_array[n][j] == '\n')
 			y++;
-		array[n][j++] == '\n' ? x = 0 : x++;
+		array.tetro_array[n][j++] == '\n' ? x = 0 : x++;
 	}
-	pieces[n][k] = n;
-	return (pieces);
+	array.pieces[n][k] = n;
+	return (array.pieces);
 }
 
-int		**ft_convert(char **array)
+int		**ft_convert(t_lista array)
 {
-	int **pieces;
 	int n;
 	int i;
 
 	n = 0;
-	i = ft_listlen_char(array);
-	if (!(pieces = (int**)malloc(sizeof(int*) * i + 1)))
-		ft_error();
+	i = ft_listlen_char(array.tetro_array);
+	if (!(array.pieces = (int**)malloc(sizeof(int*) * i + 1)))
+		ft_error(array);
 	while (n < i)
 	{
-		if (!(pieces[n] = (int*)malloc(sizeof(int) * 9)))
-			ft_error();
-		ft_convert_slave(array, pieces, n++);
+		if (!(array.pieces[n] = (int*)malloc(sizeof(int) * 9)))
+			ft_error(array);
+		ft_convert_slave(array, n++);
 	}
-	pieces[n] = NULL;
-	ft_2d_char_free(array);
-	return (pieces);
+	array.pieces[n] = NULL;
+	ft_2d_char_free(array.tetro_array);
+	return (array.pieces);
 }
 
-char	*ft_classify_tetro(char *sq)
+char	*ft_classify_tetro(t_lista array)
 {
-	if (ft_read_i(sq))
-		return (ft_read_i(sq));
-	if (ft_read_j(sq))
-		return (ft_read_j(sq));
-	if (ft_read_l(sq))
-		return (ft_read_l(sq));
-	if (ft_read_sq(sq))
-		return (ft_read_sq(sq));
-	if (ft_read_t(sq))
-		return (ft_read_t(sq));
-	if (ft_read_z(sq))
-		return (ft_read_z(sq));
-	ft_error();
+	if (ft_read_i(array.sq))
+		return (ft_read_i(array.sq));
+	if (ft_read_j(array.sq))
+		return (ft_read_j(array.sq));
+	if (ft_read_l(array.sq))
+		return (ft_read_l(array.sq));
+	if (ft_read_sq(array.sq))
+		return (ft_read_sq(array.sq));
+	if (ft_read_t(array.sq))
+		return (ft_read_t(array.sq));
+	if (ft_read_z(array.sq))
+		return (ft_read_z(array.sq));
+	ft_error(array);
 	return (NULL);
 }
 
-char	**ft_assign_array(char *file)
+char	**ft_assign_array(char *file, t_lista array)
 {
-	char	**tetro_array;
-	char	*sq;
 	int		i;
 	int		end;
 
 	i = 0;
 	end = 0;
-	if (!file || !(tetro_array = (char **)malloc(sizeof(char *) * 27)))
-		ft_error();
-	while (!end && i < 27) //do we need to return error if we have more than 26 pcs?
+	if (!file || !(array.tetro_array = (char **)malloc(sizeof(char *) * 27)))
+		ft_error(array);
+	while (!end && i < 27)
 	{
-		if (!(sq = ft_strndup(file, 20)))
-			ft_error();
+		if (!(array.sq = ft_strndup(file, 20)))
+			ft_error(array);
 		if (file[20] != '\n')
 			end = 1;
 		else
 			file += 21;
 		if ((end && file[20] != '\0'))
-			ft_error();
-		tetro_array[i++] = ft_strdup(ft_classify_tetro(sq));
-		if (sq)
-			free(sq);
+			ft_error(array);
+		array.tetro_array[i++] = ft_strdup(ft_classify_tetro(array));
+		if (array.sq)
+			free(array.sq);
 	}
-	tetro_array[i] = NULL;
-	return (tetro_array);
+	array.tetro_array[i] = NULL;
+	return (array.tetro_array);
 }
