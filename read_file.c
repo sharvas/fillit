@@ -6,7 +6,7 @@
 /*   By: dfinnis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 08:19:43 by dfinnis           #+#    #+#             */
-/*   Updated: 2018/12/02 11:48:25 by svaskeli         ###   ########.fr       */
+/*   Updated: 2018/12/02 17:33:12 by dfinnis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		**ft_convert(t_lista array)
 
 	n = 0;
 	i = ft_listlen_char(array.tetro_array);
-	if (!(array.pieces = (int**)malloc(sizeof(int*) * i + 1)))
+	if (!(array.pieces = (int**)malloc(sizeof(int*) * (i + 1))))
 		ft_error(array);
 	while (n < i)
 	{
@@ -92,7 +92,7 @@ char	**ft_assign_array(char *file, t_lista array)
 	end = 0;
 	if (!file || !(array.tetro_array = (char **)malloc(sizeof(char *) * 27)))
 		ft_ass_slave(array, i);
-	while (!end && i < 27)
+	while (!end && i < 26)
 	{
 		if (!(array.sq = ft_strndup(file, 20)))
 			ft_ass_slave(array, i);

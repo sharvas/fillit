@@ -18,7 +18,7 @@ char	**ft_new_space(int min_size, t_lista array)
 	int		x;
 
 	y = 0;
-	if (!(array.space = (char**)malloc(sizeof(char*) * min_size + 1)))
+	if (!(array.space = (char**)malloc(sizeof(char*) * (min_size + 1))))
 		ft_error(array);
 	while (y < min_size)
 	{

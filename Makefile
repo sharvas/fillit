@@ -6,7 +6,7 @@
 #    By: dfinnis <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/01 12:33:42 by dfinnis           #+#    #+#              #
-#    Updated: 2018/12/01 12:33:47 by dfinnis          ###   ########.fr        #
+#    Updated: 2018/12/02 17:17:38 by svaskeli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ $(NAME): lib
 	gcc $(FLAGS) $(HEADER) -c $(SRCS) -g
 	gcc $(OBJ) $(HEADER) $(LIB) -g -o $(NAME)
 
-lib:
+lib: 
 	@make -C libft/ all
 
 libfclean:
