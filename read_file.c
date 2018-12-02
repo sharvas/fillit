@@ -95,7 +95,8 @@ char	**ft_assign_array(char *file, t_lista array)
 			file += 21;
 		if ((end && file[20] != '\0'))
 			ft_error(array);
-		array.tetro_array[i++] = ft_strdup(ft_classify_tetro(array));
+		if (!(array.tetro_array[i++] = ft_strdup(ft_classify_tetro(array))))
+			ft_error(array);
 		if (array.sq)
 			free(array.sq);
 	}
