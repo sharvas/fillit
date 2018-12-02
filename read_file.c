@@ -58,7 +58,7 @@ int		**ft_convert(t_lista array)
 	return (array.pieces);
 }
 
-char	*ft_classify_tetro(t_lista array)
+char	*ft_classify_tetro(t_lista array, int i)
 {
 	if (ft_read_i(array.sq))
 		return (ft_read_i(array.sq));
@@ -72,8 +72,15 @@ char	*ft_classify_tetro(t_lista array)
 		return (ft_read_t(array.sq));
 	if (ft_read_z(array.sq))
 		return (ft_read_z(array.sq));
+	array.tetro_array[i] = NULL;
 	ft_error(array);
 	return (NULL);
+}
+
+void	ft_ass_slave(t_lista array, int i)
+{
+	array.tetro_array[i] = NULL;
+	ft_error(array);
 }
 
 char	**ft_assign_array(char *file, t_lista array)
@@ -84,30 +91,22 @@ char	**ft_assign_array(char *file, t_lista array)
 	i = 0;
 	end = 0;
 	if (!file || !(array.tetro_array = (char **)malloc(sizeof(char *) * 27)))
-		ft_error(array);
+		ft_ass_slave(array, i);
 	while (!end && i < 27)
 	{
 		if (!(array.sq = ft_strndup(file, 20)))
-		{
-			array.tetro_array[i] = NULL;
-			ft_error(array);
-		}
+			ft_ass_slave(array, i);
 		if (file[20] != '\n')
 			end = 1;
 		else
 			file += 21;
 		if ((end && file[20] != '\0'))
-		{
-			array.tetro_array[i] = NULL;
-			ft_error(array);
-		}
-		if (!(array.tetro_array[i++] = ft_strdup(ft_classify_tetro(array))))
-		{
-			array.tetro_array[i] = NULL;
-			ft_error(array);
-		}
+			ft_ass_slave(array, i);
+		if (!(array.tetro_array[i] = ft_strdup(ft_classify_tetro(array, i))))
+			ft_ass_slave(array, i);
 		if (array.sq)
 			free(array.sq);
+		i++;
 	}
 	array.tetro_array[i] = NULL;
 	return (array.tetro_array);

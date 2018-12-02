@@ -15,7 +15,6 @@
 # include "libft/libft.h"
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 # include <fcntl.h>
 
 typedef struct	s_lista
@@ -28,7 +27,8 @@ typedef struct	s_lista
 
 int				**ft_convert_slave(t_lista array, int n);
 int				**ft_convert(t_lista array);
-char			*ft_classify_tetro(t_lista array);
+char			*ft_classify_tetro(t_lista array, int i);
+void			ft_ass_slave(t_lista array, int i);
 char			**ft_assign_array(char *file, t_lista array);
 
 int				ft_read_i1(char *sq);

@@ -16,11 +16,10 @@ int	main(int argc, char **argv)
 {
 	t_lista	array;
 	int		fd;
-	char	*buf;
+	char	buf[548];
 	int		ret;
 	char	*tmp;
 
-	buf = ft_strnew(548);
 	array.sq = NULL;
 	array.tetro_array = NULL;
 	array.pieces = NULL;
