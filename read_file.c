@@ -88,15 +88,24 @@ char	**ft_assign_array(char *file, t_lista array)
 	while (!end && i < 27)
 	{
 		if (!(array.sq = ft_strndup(file, 20)))
+		{
+			array.tetro_array[i] = NULL;
 			ft_error(array);
+		}
 		if (file[20] != '\n')
 			end = 1;
 		else
 			file += 21;
 		if ((end && file[20] != '\0'))
+		{
+			array.tetro_array[i] = NULL;
 			ft_error(array);
+		}
 		if (!(array.tetro_array[i++] = ft_strdup(ft_classify_tetro(array))))
+		{
+			array.tetro_array[i] = NULL;
 			ft_error(array);
+		}
 		if (array.sq)
 			free(array.sq);
 	}
