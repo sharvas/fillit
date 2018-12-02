@@ -6,7 +6,7 @@
 /*   By: dfinnis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 08:19:43 by dfinnis           #+#    #+#             */
-/*   Updated: 2018/12/02 17:33:12 by dfinnis          ###   ########.fr       */
+/*   Updated: 2018/12/02 19:23:09 by svaskeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	*ft_classify_tetro(t_lista array, int i)
 	return (NULL);
 }
 
-void	ft_ass_slave(t_lista array, int i)
+void	ft_error_null(t_lista array, int i)
 {
 	array.tetro_array[i] = NULL;
 	ft_error(array);
@@ -91,20 +91,20 @@ char	**ft_assign_array(char *file, t_lista array)
 	i = 0;
 	end = 0;
 	if (!file || !(array.tetro_array = (char **)malloc(sizeof(char *) * 27)))
-		ft_ass_slave(array, i);
+		ft_error_null(array, i);
 	while (!end && i < 26)
 	{
-		if (!(array.sq = ft_strndup(file, 20)))
-			ft_ass_slave(array, i);
+		if ((ft_strlen(file) < 20) || !(array.sq = ft_strndup(file, 20)))
+			ft_error_null(array, i);
 		if (file[20] != '\n')
 			end = 1;
 		else
 			file += 21;
-		if ((end && file[20] != '\0'))
-			ft_ass_slave(array, i);
+		if (end && file[20] != '\0')
+			ft_error_null(array, i);
 		if (!(array.tetro_array[i] = ft_strdup(ft_classify_tetro(array, i))))
-			ft_ass_slave(array, i);
-		if (array.sq)
+			ft_error_null(array, i);
+		if (ft_strlen(file) >= 20)
 			free(array.sq);
 		i++;
 	}

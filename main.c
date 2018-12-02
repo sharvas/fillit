@@ -6,7 +6,7 @@
 /*   By: dfinnis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 08:39:35 by dfinnis           #+#    #+#             */
-/*   Updated: 2018/12/02 13:49:06 by svaskeli         ###   ########.fr       */
+/*   Updated: 2018/12/02 18:36:40 by svaskeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 		ft_exit_usage();
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
 		ft_error(array);
-	if ((ret = read(fd, buf, 548)) <= 0 || ret > 545)
+	if ((ret = read(fd, buf, 548)) <= 0 || ret > 546)
 		ft_error(array);
 	tmp = ft_strndup((char *)buf, ret);
 	array.tetro_array = ft_assign_array(tmp, array);

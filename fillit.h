@@ -6,7 +6,7 @@
 /*   By: dfinnis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 12:52:29 by dfinnis           #+#    #+#             */
-/*   Updated: 2018/12/02 11:49:55 by svaskeli         ###   ########.fr       */
+/*   Updated: 2018/12/02 18:46:04 by svaskeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct	s_lista
 int				**ft_convert_slave(t_lista array, int n);
 int				**ft_convert(t_lista array);
 char			*ft_classify_tetro(t_lista array, int i);
-void			ft_ass_slave(t_lista array, int i);
+void			ft_error_null(t_lista array, int i);
 char			**ft_assign_array(char *file, t_lista array);
 
 int				ft_read_i1(char *sq);
