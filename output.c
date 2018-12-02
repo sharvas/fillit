@@ -18,9 +18,8 @@ void	ft_exit_usage(void)
 	exit(1);
 }
 
-void	ft_error(t_lista array)
+void	ft_free_all(t_lista array)
 {
-	ft_putstr("error\n");
 	if (array.pieces)
 		ft_2d_int_free(array.pieces);
 	if (array.tetro_array)
@@ -29,6 +28,12 @@ void	ft_error(t_lista array)
 		ft_2d_char_free(array.space);
 	if (array.sq)
 		free(array.sq);
+}
+
+void	ft_error(t_lista array)
+{
+	ft_putstr("error\n");
+	ft_free_all(array);
 	exit(1);
 }
 

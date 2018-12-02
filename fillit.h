@@ -71,6 +71,7 @@ void			ft_update_space(char **space, int *pieces, int x, int y);
 void			ft_backtrack(char **space, int *pieces, int x, int y);
 
 void			ft_exit_usage(void);
+void			ft_free_all(t_lista array);
 void			ft_error(t_lista array);
 void			ft_print_array(char **array);
 

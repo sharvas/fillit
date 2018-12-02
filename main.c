@@ -32,7 +32,6 @@ int	main(int argc, char **argv)
 	close(fd);
 	array.pieces = ft_convert(array);
 	ft_print_array(array.tetro_array = ft_start_function(array));
-	ft_2d_int_free(array.pieces);
-	ft_2d_char_free(array.tetro_array);
+	ft_free_all(array);
 	return (0);
 }
