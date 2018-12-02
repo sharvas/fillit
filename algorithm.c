@@ -70,7 +70,8 @@ char	**ft_start_function(t_lista array)
 
 	min_size = ft_sqrt(ft_listlen_int(array.pieces) * 4);
 	array.space = ft_new_space(min_size, array);
-	while ((res = ft_recursive_solver(array.space, array.pieces, min_size)) != 1)
+	while ((res = ft_recursive_solver(array.space, array.pieces, min_size))
+		!= 1)
 	{
 		i = -1;
 		while (array.space[++i] != NULL)
