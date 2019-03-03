@@ -1,1 +1,7 @@
 .DS_Store
+a.out
+*.gch
+.vscode
+*.o
+*.a
+lem-in

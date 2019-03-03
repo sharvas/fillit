@@ -12,47 +12,58 @@
 
 NAME = fillit
 
-SRCS = algorithm.c \
-		algorithm_rhythm.c \
-		main.c \
-		output.c \
-		read_file.c \
-		read_i.c \
-		read_j.c \
-		read_l.c \
-		read_sq.c \
-		read_t.c \
-		read_z.c
-
-OBJ = $(SRCS:.c=.o)
-
 FLAGS = -Wall -Werror -Wextra
 
-HEADER = -I libft/
+SRCS_DIR = srcs/
+OBJS_DIR = objs/
 
-LIB = -L libft/ -lft
+INC = includes/
+HEADER = $(INC)fillit.h
 
-all: $(NAME)
+LIBFT = libft
+LIBFT_A = $(LIBFT)/libft.a
 
-$(NAME): lib
-	gcc $(FLAGS) $(HEADER) -c $(SRCS) -g
-	gcc $(OBJ) $(HEADER) $(LIB) -g -o $(NAME)
+SRCS_FILES = algorithm.c algorithm_rhythm.c main.c output.c \
+		read_file.c read_i.c read_j.c read_l.c read_sq.c \
+		read_t.c read_z.c
 
-lib: 
-	@make -C libft/ all
+SRCS_PATH = $(SRCS_FILES:%=$(SRCS_DIR)%)
 
-libfclean:
-	@make -C libft/ fclean
+OBJS = $(SRCS_FILES:%.c=%.o)
+OBJS_PATH = $(addprefix $(OBJS_DIR), $(OBJS))
 
-libclean:
-	@make -C libft/ clean
+GREEN = "\033[0;32m"
+RED = "\033[0;31m"
+DEFAULT = "\033[0m"
 
-clean: libclean
-	@/bin/rm -f $(OBJ)
+all: comp_libft $(NAME)
 
-fclean: clean libfclean
-	@/bin/rm -f $(NAME)
+comp_libft:
+	@echo "Compiling:" $(GREEN) Libft $(DEFAULT)
+	make -C $(LIBFT)
+
+norm:
+	norminette $(INC) $(SRCS_DIR)
+
+$(NAME): $(LIBFT_A) $(OBJS_DIR) $(OBJS_PATH)
+	@echo "Compiling:" $(GREEN) $(NAME) $(DEFAULT)
+	gcc $(FLAGS) $(OBJS_PATH) $(LIBFT_A) -o $(NAME) -I $(LIBFT) -I $(INC)
+
+$(OBJS_DIR):
+	@mkdir -p $(OBJS_DIR)
+
+$(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(HEADER)
+	@echo "Compiling:" $(GREEN) $< $(DEFAULT)
+	gcc $(FLAGS) -c $< -o $@ -I $(INC)
+
+clean:
+	@make -C $(LIBFT)/ clean
+	@rm -rf $(OBJS_DIR)
+
+fclean:
+	@make -C $(LIBFT)/ fclean
+	@rm -rf $(OBJS_DIR) $(NAME)
 
 re: fclean all
 
-.PHONY : all clean fclean re
+.PHONY: all comp_libft norm clean fclean re g fsanitize
