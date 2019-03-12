@@ -2,8 +2,6 @@
 
 This program takes a file as a parameter, which contains a list of [tetrominoes](https://en.wikipedia.org/wiki/Tetromino), and arranges them in order to create the smallest square possible. It has to produce the answer in the minimal amount of time, despite an exponentially growing number of possibilities each time a piece is added. For the details please see the [subject.](https://github.com/sharvas/fillit/raw/master/fillit.en.pdf)
 
-The project was done in a team of [@dfinnis](https://github.com/dfinnis) and me.
-
 An example:
 ```console
 $> cat test_files/examples/pdf.fillit
@@ -66,3 +64,5 @@ Y.TT.QWWSUU
 YTTVV..WXXX
 ZZZZVV.W.X.
 ```
+
+The project was done in a team of [@dfinnis](https://github.com/dfinnis) and me.
