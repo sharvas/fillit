@@ -1,4 +1,4 @@
-# The program to arrange Tetris pieces into the smallest square
+# The program to arrange Tetriminos into the smallest square
 
 This program takes a file as a parameter, which contains a list of [Tetriminos](https://en.wikipedia.org/wiki/Tetromino), and arranges them in order to create the smallest square possible. It has to produce the answer in the minimal amount of time, despite an exponentially growing number of possibilities each time a piece is added. For the details please see the [subject.](https://github.com/sharvas/fillit/raw/master/fillit.en.pdf)
 
