@@ -1,6 +1,6 @@
-# The program to arrange Tetriminos into the smallest square
+# The program to arrange tetrominoes into the smallest square
 
-This program takes a file as a parameter, which contains a list of [Tetriminos](https://en.wikipedia.org/wiki/Tetromino), and arranges them in order to create the smallest square possible. It has to produce the answer in the minimal amount of time, despite an exponentially growing number of possibilities each time a piece is added. For the details please see the [subject.](https://github.com/sharvas/fillit/raw/master/fillit.en.pdf)
+This program takes a file as a parameter, which contains a list of [tetrominoes](https://en.wikipedia.org/wiki/Tetromino), and arranges them in order to create the smallest square possible. It has to produce the answer in the minimal amount of time, despite an exponentially growing number of possibilities each time a piece is added. For the details please see the [subject.](https://github.com/sharvas/fillit/raw/master/fillit.en.pdf)
 
 The project was done in a team of [@dfinnis](https://github.com/dfinnis) and me.
 
@@ -28,7 +28,7 @@ $> cat test_files/examples/pdf.fillit
 ....
 ```
 
-Produces a result where each tetrimino is assigned a chronological letter:
+Produces a result where each tetromino is assigned a chronological letter:
 ```console
 $> ./fillit test_files/examples/pdf.fillit
 DDAA
@@ -37,7 +37,7 @@ CCCA
 BBBB
 ```
 
-All tetrominoes must be comprised of four `#` on a background of `.` and each separated by a newline character. All other shapes are invalid. Shapes cannot be rotated. Each Tetrimino fills only 4 of the 16 available boxes, so it is possible to describe the same Tetrimino in multiple ways.
+All tetrominoes must be comprised of four `#` on a background of `.` and each separated by a newline character. All other shapes are invalid. Shapes cannot be rotated. Each tetromino fills only 4 of the 16 available boxes, so it is possible to describe the same tetromino in multiple ways.
 
 ```console
 ##.. .##. ..## .... .... ....
