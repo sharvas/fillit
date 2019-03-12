@@ -4,6 +4,8 @@ This program takes a file as a parameter, which contains a list of [Tetriminos](
 
 The project was done in a two people team with [@dfinnis](https://github.com/dfinnis).
 
+[Complete subject.](https://github.com/sharvas/fillit/raw/master/fillit.en.pdf)
+
 An example:
 ```console
 $> cat test_files/examples/pdf.fillit
