@@ -1,10 +1,8 @@
-# The program to arrage Tetris pieces into the smallest square
+# The program to arrange Tetris pieces into the smallest square
 
-This program takes a file as a parameter, which contains a list of [Tetriminos](https://en.wikipedia.org/wiki/Tetromino), and arranges them in order to create the smallest square possible. It has to produce the answer in the minimal amount of time, despite an exponentially growing number of possibilities each time a piece is added.
+This program takes a file as a parameter, which contains a list of [Tetriminos](https://en.wikipedia.org/wiki/Tetromino), and arranges them in order to create the smallest square possible. It has to produce the answer in the minimal amount of time, despite an exponentially growing number of possibilities each time a piece is added. For the details please see the [subject.](https://github.com/sharvas/fillit/raw/master/fillit.en.pdf)
 
-The project was done in a two people team with [@dfinnis](https://github.com/dfinnis).
-
-[Complete subject.](https://github.com/sharvas/fillit/raw/master/fillit.en.pdf)
+The project was done in a team of [@dfinnis](https://github.com/dfinnis) and me.
 
 An example:
 ```console
@@ -39,7 +37,7 @@ CCCA
 BBBB
 ```
 
-All tetriminos must be comprised of four `#` on a background of `.` and each separate by a new line character. All other shapes are invalid. Shapes cannot be rotated. Each Tetrimino fills only 4 of the 16 available boxes, so it is possible to describe the same Tetrimino in multiple ways.
+All tetrominoes must be comprised of four `#` on a background of `.` and each separated by a newline character. All other shapes are invalid. Shapes cannot be rotated. Each Tetrimino fills only 4 of the 16 available boxes, so it is possible to describe the same Tetrimino in multiple ways.
 
 ```console
 ##.. .##. ..## .... .... ....
@@ -52,7 +50,7 @@ The program cannot leak. All errors must be handled carefully. In no way can the
 
 ## Usage
 
-To compile, run `make` This will compile `fillit`. Execute with a 'map' as a parameter.
+To compile, run `make` and this will compile `fillit`. Execute with a 'map' as a parameter or run without any parameter to see the usage.
 
 ```console
 $> ./fillit test_files/valid_26tets
