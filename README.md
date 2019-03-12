@@ -6,7 +6,7 @@ The project was done in a two people team with [@dfinnis](https://github.com/dfi
 
 An example:
 ```console
-➜ fillit cat test_files/examples/pdf.fillit
+$> cat test_files/examples/pdf.fillit
 ....
 ##..
 .#..
@@ -30,7 +30,7 @@ An example:
 
 Produces a result where each tetrimino is assigned a chronological letter:
 ```console
-➜ fillit ./fillit test_files/examples/pdf.fillit
+$> ./fillit test_files/examples/pdf.fillit
 DDAA
 CDDA
 CCCA
@@ -50,3 +50,19 @@ The program cannot leak. All errors must be handled carefully. In no way can the
 
 ## Usage
 
+To compile, run `make` This will compile `fillit`. Execute with a 'map' as a parameter.
+
+```console
+$> ./fillit test_files/valid_26tets
+ABBBBCCC.DD
+AEEFFGGCDDI
+AEE.FFGHHHI
+AJJJJ.G.H.I
+KKK.LLMMNNI
+OOKLLQMM.NN
+YOPPPQRRRR.
+YO.P.QSSSUU
+Y.TT.QWWSUU
+YTTVV..WXXX
+ZZZZVV.W.X.
+```
