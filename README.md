@@ -65,4 +65,4 @@ YTTVV..WXXX
 ZZZZVV.W.X.
 ```
 
-The project was done in a team of [@dfinnis](https://github.com/dfinnis) and me.
+The project was done in a team with [@dfinnis](https://github.com/dfinnis).
